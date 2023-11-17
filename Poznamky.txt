@@ -1,0 +1,7 @@
+Tabulka uživatelů: ID, jméno, email, role.
+Tabulka předmětů: ID, označení, název, anotace, počet kreditů, garant.
+Tabulka výukových aktivit: ID, označení, délka, opakování, předmět_id.
+Tabulka rozvrhů: ID, výuková aktivita_id, místnost_id, vyučující_id, čas.
+
+Artisan prikazy:
+    php artisan migrate:fresh - refresh databaz
