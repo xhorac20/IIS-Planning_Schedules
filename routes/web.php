@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\EducationalActivitiesController;
+use App\Http\Controllers\SchedulesController;
+use App\Http\Controllers\RoomsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Autentizační routy (pokud používáte Laravel Breeze, Jetstream, atd.)
+Auth::routes();
+
+// User routy
+Route::resource('users', UserController::class);
+
+// Subject routy
+Route::resource('subjects', SubjectController::class);
+
+// EducationalActivity routy
+Route::resource('educational-activities', EducationalActivitiesController::class);
+
+// Schedule routy
+Route::resource('schedules', SchedulesController::class);
+
+// Room routy
+Route::resource('rooms', RoomsController::class);
+
+// Další routy, které mohou být potřeba...
