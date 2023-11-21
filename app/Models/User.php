@@ -42,4 +42,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //Definuje vztahy, které umožňují uživateli být garantem předmětu a vyučujícím v rozvrhu.
+    public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Subject::class, 'guarantor_id');
+    }
+
+    public function schedules(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Schedules::class, 'instructor_id');
+    }
+
+    // Jakékoli další metody...
 }

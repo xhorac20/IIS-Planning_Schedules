@@ -1,0 +1,47 @@
+/* Základní tělo stránky */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Hlavička */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+/* Navigační menu */
+.navbar {
+    margin-bottom: 20px;
+}
+
+/* Hlavní obsah */
+main {
+    padding: 20px;
+}
+
+/* Pata */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Odkazy */
+a, .btn-link {
+    color: #007bff;
+}
+
+a:hover, .btn-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+/* Další přizpůsobení podle potřeby... */
