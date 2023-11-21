@@ -18,6 +18,7 @@ use App\Http\Controllers\RoomsController;
 |
 */
 
+// Tato routa vrací zobrazení domovské stránky. Můžete ji změnit tak, aby odrážela hlavní stránku vašeho systému.
 Route::get('/', function () {
     return view('welcome');
 });

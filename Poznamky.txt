@@ -5,3 +5,12 @@ Tabulka rozvrhů: ID, výuková aktivita_id, místnost_id, vyučující_id, čas
 
 Artisan prikazy:
     php artisan migrate:fresh - refresh databaz
+    php artisan serve - spustenie serveru
+
+Subory a popis:
+    resources
+    |   css             - Styl stranky
+        |   app.css
+    |   js              - Javascriptova funkcionalita
+        |   app.js
+        |   bootstrap.js
