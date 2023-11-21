@@ -9,8 +9,10 @@ Database = Model
 
 Prikazy:
     php artisan migrate:fresh - refresh databaz
-    php artisan serve - spustenie serveru
+    php artisan route:cache   - refresh po zmene v PHP kode
     npm run build - Compile CSS
+    php artisan serve - spustenie serveru
+
 
 Subory a popis:
     resources

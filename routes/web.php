@@ -41,4 +41,8 @@ Route::resource('schedules', SchedulesController::class);
 // Room routy
 Route::resource('rooms', RoomsController::class);
 
+// Procházení předmětů pro neregistrované uživatele (hosty)
+Route::get('/browse-subjects', [SubjectController::class, 'indexForGuest'])->name('guest.browse-subjects');
+
+
 // Další routy, které mohou být potřeba...
