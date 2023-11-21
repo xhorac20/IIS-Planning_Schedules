@@ -26,7 +26,7 @@
                 <a href="{{ route('register') }}" class="btn btn-dark-blue">
                     {{ __('Register') }}
                 </a>
-                <a href="{{ url('/') }}" class="btn btn-dark-blue">
+                <a href="{{ route('guest.browse-subjects') }}" class="btn btn-dark-blue">
                     {{ __('Hosť') }}
                 </a>
             </div>
