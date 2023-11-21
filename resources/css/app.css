@@ -1,47 +1,95 @@
-/* Základní tělo stránky */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Hlavička */
+/* Základní hlavicka stránky */
 header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-/* Navigační menu */
-.navbar {
-    margin-bottom: 20px;
-}
-
-/* Hlavní obsah */
-main {
-    padding: 20px;
-}
-
-/* Pata */
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
+    background: #333; /* tmavé pozadí */
+    color: #fff; /* bílý text */
+    text-align: center; /* text zarovnaný na střed */
+    padding: 1rem 0; /* padding na horní a dolní straně */
     position: relative;
     bottom: 0;
     width: 100%;
 }
 
-/* Odkazy */
-a, .btn-link {
-    color: #007bff;
+/* Základní tělo stránky */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
 }
 
-a:hover, .btn-link:hover {
-    color: #0056b3;
+/* Styl patičky */
+footer {
+    background: #333; /* tmavé pozadí */
+    color: #fff; /* bílý text */
+    text-align: center; /* text zarovnaný na střed */
+    padding: 1rem 0; /* padding na horní a dolní straně */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content p {
+    margin: 0; /* odstranění defaultního margin pro <p> */
+    padding: 0.5rem; /* přidání paddingu pro <p> */
+    font-size: 0.7rem;
+}
+
+/* Přihlašovací formulář a tlačítka */
+.login-container {
+    background-color: #e6f0ff; /* bledě modrá */
+    border: 2px solid #007bff; /* tmavě modrá */
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px; /* nebo jakoukoliv jinou šířku, kterou preferujete */
+    margin: 100px auto; /* horní a dolní okraj 100px, automatické na stranách pro centrování */
+    text-align: center;
+}
+
+/* Styly pro tlačítka */
+.btn-dark-blue {
+    background-color: #0056b3; /* tmavě modrá */
+    color: white;
+    border: none; /* pokud nechcete okraje */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
     text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
 }
 
-/* Další přizpůsobení podle potřeby... */
+.btn-dark-blue:hover {
+    background-color: #003d82; /* ještě tmavší modrá pro hover */
+    color: #fff;
+}
+
+/* Styly pro formulář a jeho prvky */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Dodatečné úpravy pro inputy */
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 30px); /* 100% šířky kontejneru minus padding */
+    padding: 10px;
+    margin-bottom: 10px; /* mezera mezi inputy */
+    border-radius: 5px;
+    border: 1px solid #007bff; /* tmavě modrá */
+}
+
+/* Úprava pro tlačítka, aby byla vedle seba */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.login-heading {
+    color: #0056b3; /* Tmavě modrá barva */
+    font-size: 2rem; /* Velká velikost písma */
+    font-weight: bold; /* Tučné písmo */
+    text-align: center; /* Zarovnání textu na střed */
+    margin-bottom: 1rem; /* Dolní okraj pro oddělení od formuláře */
+}

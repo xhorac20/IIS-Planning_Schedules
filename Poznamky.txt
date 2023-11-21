@@ -3,9 +3,14 @@ Tabulka předmětů: ID, označení, název, anotace, počet kreditů, garant.
 Tabulka výukových aktivit: ID, označení, délka, opakování, předmět_id.
 Tabulka rozvrhů: ID, výuková aktivita_id, místnost_id, vyučující_id, čas.
 
-Artisan prikazy:
+User = View
+Server = Controller
+Database = Model
+
+Prikazy:
     php artisan migrate:fresh - refresh databaz
     php artisan serve - spustenie serveru
+    npm run build - Compile CSS
 
 Subory a popis:
     resources
@@ -14,3 +19,9 @@ Subory a popis:
     |   js              - Javascriptova funkcionalita
         |   app.js
         |   bootstrap.js
+
+
+Nutne nainstalovat:
+    XAMPP - PHP 8.2.12
+    Composer
+    node.js - Current v21.2.0
