@@ -27,3 +27,8 @@ Nutne nainstalovat:
     XAMPP - PHP 8.2.12
     Composer
     node.js - Current v21.2.0
+
+Instalacia Laravel Breeze
+    composer require laravel/breeze --dev
+    php artisan breeze:install blade (PHPUnit)
+
