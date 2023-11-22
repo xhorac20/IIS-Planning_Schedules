@@ -1,3 +1,7 @@
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;*/
+
 /* Základní hlavicka stránky */
 header {
     background: #333; /* tmavé pozadí */
@@ -43,9 +47,34 @@ footer {
     width: 300px; /* nebo jakoukoliv jinou šířku, kterou preferujete */
     margin: 100px auto; /* horní a dolní okraj 100px, automatické na stranách pro centrování */
     text-align: center;
+    display: flex; /* Použití flexboxu pro centrování obsahu */
+    flex-direction: column; /* Zajistí vertikální uspořádání prvků */
+    align-items: center; /* Centruje prvky vodorovně */
+    justify-content: center; /* Centruje prvky svisle, pokud je potřeba */
+}
+
+/* Styly formuláře */
+.form-input {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
 }
 
 /* Styly pro tlačítka */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
 .btn-dark-blue {
     background-color: #0056b3; /* tmavě modrá */
     color: white;
@@ -59,37 +88,12 @@ footer {
     margin-right: 10px;
 }
 
-.btn-dark-blue:hover {
-    background-color: #003d82; /* ještě tmavší modrá pro hover */
-    color: #fff;
+.button:hover {
+    background-color: #003d82;
 }
 
-/* Styly pro formulář a jeho prvky */
-.form-group {
-    margin-bottom: 15px;
+.small-text{
+    font-size: 0.8rem
 }
 
-/* Dodatečné úpravy pro inputy */
-input[type="text"],
-input[type="password"] {
-    width: calc(100% - 30px); /* 100% šířky kontejneru minus padding */
-    padding: 10px;
-    margin-bottom: 10px; /* mezera mezi inputy */
-    border-radius: 5px;
-    border: 1px solid #007bff; /* tmavě modrá */
-}
-
-/* Úprava pro tlačítka, aby byla vedle seba */
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.login-heading {
-    color: #0056b3; /* Tmavě modrá barva */
-    font-size: 2rem; /* Velká velikost písma */
-    font-weight: bold; /* Tučné písmo */
-    text-align: center; /* Zarovnání textu na střed */
-    margin-bottom: 1rem; /* Dolní okraj pro oddělení od formuláře */
-}
+/* Další styly */
