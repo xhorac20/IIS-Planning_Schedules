@@ -22,7 +22,7 @@
             </div>
 
             <!-- Tlačítka -->
-            <div class="button-group">
+            <div class="button-group-middle">
                 <x-primary-button class="btn-dark-blue">
                     {{ __('Log in') }}
                 </x-primary-button>
