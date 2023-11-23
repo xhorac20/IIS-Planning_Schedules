@@ -46,7 +46,7 @@
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2"/>
             </div>
 
-            <div class="button-group">
+            <div class="button-group-middle">
                 <x-primary-button class="btn-dark-blue">
                     {{ __('Register') }}
                 </x-primary-button>

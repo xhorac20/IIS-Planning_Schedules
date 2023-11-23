@@ -11,7 +11,6 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,6 +42,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Checks if the user is an administrator.
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
 
     //Definuje vztahy, které umožňují uživateli být garantem předmětu a vyučujícím v rozvrhu.
     public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -40,8 +40,8 @@ footer {
 
 /* Přihlašovací formulář a tlačítka */
 .login-container {
-    background-color: #e6f0ff; /* bledě modrá */
-    border: 2px solid #007bff; /* tmavě modrá */
+    background-color: #e6f0ff;
+    border: 2px solid #007bff;
     padding: 20px;
     border-radius: 5px;
     width: 300px; /* nebo jakoukoliv jinou šířku, kterou preferujete */
@@ -68,11 +68,16 @@ footer {
     color: #333;
 }
 
-/* Styly pro tlačítka */
-.button-group {
+/* Styly pre tlačítka */
+.button-group-middle {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.button-group-right {
+    display: flex;
+    justify-content: right;
 }
 
 .btn-dark-blue {
@@ -88,12 +93,98 @@ footer {
     margin-right: 10px;
 }
 
-.button:hover {
+.btn-dark-blue:hover {
     background-color: #003d82;
 }
 
-.small-text{
+.text-center {
+    text-align: center;
+}
+
+.small-text {
     font-size: 0.8rem
 }
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: auto; /* Automatická šířka dle obsahu */
+    min-width: 100px; /* Minimální šířka */
+    background-color: #e6f0ff;
+    border: 2px solid #007bff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 0.5rem 0;
+}
+
+.sidebar span {
+    color: darkgray; /* Oranžová barva textu */
+    display: block; /* Změní span na blokový element, aby bylo možné ho vycentrovat */
+    text-align: left; /* Centrování textu */
+    margin: 10px 5px; /* Přidává vertikální okraje pro trochu místa kolem textu */
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+/* Specifické styly pro tlačítka Login a Register */
+.sidebar .button-group-right a {
+    color: white;
+}
+.sidebar .button-group-middle a {
+    color: white;
+}
+
+/* Styly pro hover stav tlačítek */
+.sidebar .button-group-right a:hover {
+    text-decoration: none;
+    background-color: #003d82;
+}
+.sidebar .button-group-middle a:hover {
+    text-decoration: none;
+    background-color: #003d82;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* Styly pro zobrazení obsahu předmětů */
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
 
 /* Další styly */
