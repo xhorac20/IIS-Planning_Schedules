@@ -27,6 +27,12 @@ Route::get('/', function () {
 // Auth routy (pokud používáte Laravel Breeze nebo Jetstream, může být tento soubor importován níže)
 // Auth::routes();
 
+// Cesty pre create user
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/', [UserController::class, 'index'])->name('users.index');
+
+
 // Dashboard - chráněný middlewarem
 Route::get('/dashboard', function () {
     return view('dashboard');

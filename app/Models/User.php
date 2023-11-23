@@ -4,8 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -43,7 +46,27 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public static function create(array $data): static
+    {
+        // Vytvoříme novou instanci User
+        $user = new static();
+
+        // Nastavíme atributy
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->role = $data['role'];
+
+        // Uložíme uživatele do databáze
+        $user->save();
+
+        // Vrátíme nově vytvořeného uživatele
+        return $user;
+    }
+
+
     //Definuje vztahy, které umožňují uživateli být garantem předmětu a vyučujícím v rozvrhu.
+
     public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Subject::class, 'guarantor_id');
