@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GuarantorController;
+use App\Http\Controllers\SchedulerController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectController;
@@ -32,11 +37,40 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// Profile routy - chráněné middlewarem
-Route::middleware('auth')->group(function () {
+// Routy pro CRUD operace
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Admin routy
+    Route::middleware(['isAdmin'])->group(function () {
+        Route::get('/admin/panel', [AdminController::class, 'index'])->name('admin.panel')->middleware('isAdmin');
+        Route::get('/manage/users', [AdminController::class, 'manageUsers'])->name('manage.users')->middleware('isAdmin');
+        Route::get('/manage/rooms', [AdminController::class, 'manageRooms'])->name('manage.rooms')->middleware('isAdmin');
+        Route::get('/manage/subjects', [AdminController::class, 'manageSubjects'])->name('manage.subjects')->middleware('isAdmin');
+    });
+
+    // Guarantor routy
+    Route::middleware(['isGuarantor'])->group(function () {
+        Route::get('/guarantor/activities', [GuarantorController::class, 'manageActivities'])->name('guarantor.manage-activities')->middleware('isGuarantor');
+        Route::get('/guarantor/assign-teachers', [GuarantorController::class, 'assignTeachers'])->name('guarantor.assign-teachers')->middleware('isGuarantor');
+    });
+
+    // Teacher routy
+    Route::middleware(['isTeacher'])->group(function () {
+        Route::get('/teacher/schedule', [TeacherController::class, 'schedule'])->name('teacher.schedule')->middleware('isTeacher');
+    });
+
+    // Scheduler routy
+    Route::middleware(['isScheduler'])->group(function () {
+        Route::get('/scheduler/panel', [SchedulerController::class, 'index'])->name('scheduler.panel')->middleware('isScheduler');
+    });
+
+    // Student routy
+    Route::middleware(['isStudent'])->group(function () {
+        Route::get('/student/schedule', [StudentController::class, 'schedule'])->name('student.schedule')->middleware('isStudent');
+    });
 });
 
 // Resource routy pro CRUD operace
@@ -49,5 +83,7 @@ Route::resource('rooms', RoomsController::class);
 // Routa pro procházení předmětů hosty
 Route::get('/browse-subjects', [SubjectController::class, 'indexForGuest'])->name('guest.browse-subjects');
 
+
 // Import autentizačních rout, pokud používáte Laravel Breeze nebo Jetstream
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
