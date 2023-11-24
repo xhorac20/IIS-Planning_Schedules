@@ -3,7 +3,7 @@
 @section('title', 'Vytvořit nového uživatele')
 
 @section('content')
-    <div class="user-create-container">
+    <div class="user-container">
         <div class="event-title">
             <h1>Create new user</h1>
         </div>

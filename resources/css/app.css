@@ -136,7 +136,7 @@ footer {
 
 /******************* USER *****************************/
 /* Vytvaranie noveho uzivatela */
-.user-create-container {
+.user-container {
     min-width: 300px;
     min-height: 600px;
     background-color: #e6f0ff;
@@ -147,18 +147,16 @@ footer {
     background-color: rgba(128, 12, 2, 0.85);
     padding: 10px;
 }
-
 .event-title h1 {
     color: white;
     margin: 0px 10px;
 }
-.user-create-container form {
+.user-container form {
     display: flex;
     flex-direction: column;
     margin-top: 15px;
 }
-
-.user-create-container input {
+.user-container input {
     max-width: 270px;
     border: 1px solid #007bff;
     padding: 10px 15px;
@@ -169,10 +167,10 @@ footer {
     font-size: 16px;
     margin: 10px 10px;
 }
-.user-create-container input::placeholder {
+.user-container input::placeholder {
     color: rgba(73, 89, 217, 0.72);
 }
-.user-create-container select {
+.user-container select {
     max-width: 300px;
     border: 1px solid #007bff;
     padding: 10px 15px;
@@ -184,13 +182,13 @@ footer {
     margin: 10px 10px;
     color: rgba(73, 89, 217, 0.72);
 }
-.user-create-container select option {
+.user-container select option {
     color: rgba(73, 89, 217, 0.72);
     padding: 10px 15px;
     height: 20px;
     margin-top: 5px;
 }
-.user-create-container button {
+.user-container button {
     max-width: 300px;
     background-color: #0056b3;
     cursor: pointer;
@@ -204,22 +202,7 @@ footer {
     font-size: 16px;
     margin: 10px 10px;
 }
-/*Cez "a" element*/
-.user-create-container button + a {
-    max-width: 270px;
-    background-color: #8d0000;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 10px 10px;
-    line-height: 1.6;
-}
-.user-create-container button:nth-of-type(2){
+.user-container button:nth-of-type(2){
     max-width: 300px;
     background-color: #8d0000;
     color: white;
@@ -246,7 +229,6 @@ footer {
     flex-grow: 8;
     vertical-align: middle;
 }
-
 .create-button {
     width: 90px;
     background-color: #007bff;
@@ -283,7 +265,6 @@ footer {
 .head-menu {
     display: flex;
     flex-direction: row;
-
 }
 .head-menu li {
     display: block;
@@ -291,28 +272,22 @@ footer {
     color: white;
 }
 .head-menu li:nth-of-type(1){
-    /*    flex-grow: 1;*/
     width: 18%;
 }
 .head-menu li:nth-of-type(2){
-    /*    flex-grow: 3;*/
     width: 50%;
 }
 .head-menu li:nth-of-type(3){
-    /*    flex-grow: 1;*/
     width: 15%;
 }
 
 .head-menu li:nth-of-type(4){
-    /*    flex-grow: 1;*/
     max-width: 100px;
 }
-
 .items {
     cursor: pointer;
     background-color: rgba(214, 96, 60, 0.96);
     text-align: left;
-
 }
 .items:hover {
     background-color: rgba(139, 32, 0, 0.92);
@@ -323,11 +298,57 @@ footer {
     text-align: center;
     text-decoration: none;
 }
-
 .end-table {
     border: 15px solid rgba(159, 41, 6, 0.85);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
+/******************* EDIT USER *****************/
+
+.borders {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid blue;
+    background-color: #007bff;
+    color: white;
+    max-width: 380px;
+    border-radius: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.borders-role {
+    display: block;
+}
+.borders input {
+    margin: 5px 5px 5px 15px;
+    width: calc(100% - 30px);
+}
+
+.borders label{
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.borders select {
+    margin: 5px 5px 5px 15px;
+    width: calc(100% - 30px);
+    justify-content: space-between;
+}
+.borders input[type="email"] {
+    width: calc(100% - 30px);
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+.buttons button:nth-of-type(n) {
+    width: 50%;
+    margin-left: 0px;
+    max-width: 192px;
+}
 

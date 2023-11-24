@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -16,10 +20,38 @@ class UserController extends Controller
         $users = User::all();
         return view('users.index', compact('users'));
     }
-    public function edit($userId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(User $user): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $user = User::find($userId);
+        // Overenie ci je admin
+//        if (auth()->user()->isAdmin() || auth()->user()->id === $user->id) {
+//            return view('users.edit', compact('user'));
+//
+//        } else {
+//            abort(403); // přístup odepřen
+//        }
         return view('users.edit', compact('user'));
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function update(Request $request, $id): \Illuminate\Http\RedirectResponse
+    {
+        $user = User::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'role' => 'required|in:user,admin,garant,teacher,scheduler,student'
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('status', 'profile-updated');
     }
     public function show($userId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -34,7 +66,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:8',
-            'role' => 'required|in:user,admin,garant,scheduler,student',
+            'role' => 'required|in:user,admin,garant,teacher,scheduler,student',
         ]);
 
         // Vytvorenie používateľa a uloženie do databázy

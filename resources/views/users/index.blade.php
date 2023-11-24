@@ -14,9 +14,14 @@
             </ul>
         </div>
 
-        <div class="user-create-container">
+        <div class="user-container">
             <div class="event-title-manage event-title">
                 <h1>User Management</h1>
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <a href="{{ route('users.create') }}" class="create-button btn-dark-blue">Create User</a>
             </div>
             <div class="manage-content">
@@ -35,7 +40,7 @@
                             <ul class="head-menu">
                                 <li>{{ $user->name }}</li>
                                 <li>{{ $user->email }}</li>
-                                <li>{{ $user->role }}</li>
+                                <li>{{ ucfirst($user->role) }}</li>
                                 <li><a href="{{ route('users.edit', $user->id) }}">Edit</a></li>
                             </ul>
                         </li>

@@ -45,6 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    private mixed $email;
+    private mixed $name;
+    private mixed $password;
+    private mixed $role;
 
     public static function create(array $data): static
     {
@@ -52,6 +56,7 @@ class User extends Authenticatable
         $user = new static();
 
         // Nastavíme atributy
+
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
@@ -66,6 +71,26 @@ class User extends Authenticatable
 
 
     //Definuje vztahy, které umožňují uživateli být garantem předmětu a vyučujícím v rozvrhu.
+    public static function findOrFail($id): \Illuminate\Database\Eloquent\Builder|Model
+    {
+        $user = self::find($id);
+
+        if (!$user) {
+            abort(404);
+        }
+
+        return $user;
+    }
+
+    public static function find($id): \Illuminate\Database\Eloquent\Builder|Model
+    {
+        return self::where('id', $id)->first();
+    }
+
+    private static function where(string $string, $id): \Illuminate\Database\Eloquent\Builder
+    {
+        return self::query()->where($string, $id);
+    }
 
     public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
