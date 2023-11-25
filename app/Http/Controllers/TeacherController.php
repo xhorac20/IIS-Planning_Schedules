@@ -18,6 +18,12 @@ class TeacherController extends Controller
         return view('teacher.schedule', compact('schedules'));
     }
 
+    public function scheduleRequirements()
+    {
+        // TODO check if teacher has any assigned subjects
+        return view('teacher.schedule-requirements');
+    }
+
     // Další metody specifické pro vyučujícího (např. správa výukových materiálů, sledování postupu studentů, atd.)
 
     // Příklad metody pro správu výukových materiálů

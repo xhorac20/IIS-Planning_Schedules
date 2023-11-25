@@ -60,11 +60,14 @@ Route::middleware(['auth'])->group(function () {
     // Teacher routy
     Route::middleware(['isTeacher'])->group(function () {
         Route::get('/teacher/schedule', [TeacherController::class, 'schedule'])->name('teacher.schedule')->middleware('isTeacher');
+        Route::get('/teacher/schedule-requirements', [TeacherController::class, 'scheduleRequirements'])->name('teacher.schedule-requirements')->middleware('isTeacher');
     });
 
     // Scheduler routy
     Route::middleware(['isScheduler'])->group(function () {
         Route::get('/scheduler/panel', [SchedulerController::class, 'index'])->name('scheduler.panel')->middleware('isScheduler');
+        // TODO move to panel?
+        Route::get('/scheduler/manage-schedules', [SchedulerController::class, 'manageSchedules'])->name('scheduler.manage-schedules')->middleware('isScheduler');
     });
 
     // Student routy

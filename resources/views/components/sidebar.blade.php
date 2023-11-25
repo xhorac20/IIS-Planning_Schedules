@@ -69,12 +69,15 @@
             <!-- Vyučujúci -->
             @if(Auth::user()->isTeacher())
                 <li><a href="{{ route('teacher.schedule') }}">Môj rozvrh</a></li>
+                <li><a href="{{ route('teacher.schedule-requirements') }}">Požadavky na rozvrh</a></li>
                 <!-- Další odkazy pro vyučujícího -->
             @endif
 
             <!-- Rozvrhár -->
             @if(Auth::user()->isScheduler())
                 <li><a href="{{ route('scheduler.panel') }}">Rozvrhárský panel</a></li>
+                {{-- TODO move to panel? --}}
+                <li><a href="{{ route('scheduler.manage-schedules') }}">Správa rozvrhů</a></li>
                 <!-- Další odkazy pro rozvrháře -->
             @endif
 
