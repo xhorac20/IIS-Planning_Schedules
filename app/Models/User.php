@@ -70,6 +70,36 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * Checks if the user is an administrator/guarantor/teacher/scheduler/student.
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return 'admin' === $this->role;
+    }
+
+    public function isGuarantor(): bool
+    {
+        return 'guarantor' === $this->role;
+    }
+
+    public function isTeacher(): bool
+    {
+        return 'teacher' === $this->role;
+    }
+
+    public function isScheduler(): bool
+    {
+        return 'scheduler' === $this->role;
+    }
+
+    public function isStudent(): bool
+    {
+        return 'student' === $this->role;
+    }
+
     //Definuje vztahy, které umožňují uživateli být garantem předmětu a vyučujícím v rozvrhu.
     public static function findOrFail($id): \Illuminate\Database\Eloquent\Builder|Model
     {
