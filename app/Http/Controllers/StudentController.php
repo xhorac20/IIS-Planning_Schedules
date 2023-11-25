@@ -23,7 +23,7 @@ class StudentController extends Controller
     public function schedule()
     {
         // Případná logika pro získání a zobrazení rozvrhu studenta
-        return view('student.schedule');
+        return view('student.student-schedule');
     }
 
     /**

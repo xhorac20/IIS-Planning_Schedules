@@ -88,6 +88,14 @@ footer {
     float: right;
 }
 
+.btn-remove {
+    background-color: darkred;
+    color: white;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+}
+
 .btn-dark-blue {
     background-color: #0056b3;
     color: white;
