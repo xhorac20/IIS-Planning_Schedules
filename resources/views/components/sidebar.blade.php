@@ -1,14 +1,17 @@
 <div class="sidebar">
+
     <!-- Odkazy pro neregistrované uživatele -->
     @guest
+
         <span>Guest</span>
-
-        <div class="button-group-right">
-            <button onclick="location.href='{{ route('login') }}'" class="btn-dark-blue">Log in</button>
-            <button onclick="location.href='{{ route('register') }}'" class="btn-dark-blue">Register</button>
+        <div class="account">
+            <div class="button-group-right">
+                <button onclick="location.href='{{ route('login') }}'" class="btn-dark-blue">Log in</button>
+                <button onclick="location.href='{{ route('register') }}'" class="btn-dark-blue">Register</button>
+            </div>
         </div>
-
     @endguest
+
 
     @auth
         @if(Auth::user()->isAdmin())
@@ -33,13 +36,16 @@
         <span>{{ Auth::user()->name }}</span>
     @endauth
 
+
     @auth
-        <div class="button-group-middle">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <!-- Použití tlačítka pro odeslání formuláře -->
-                <button type="submit" class="btn-dark-blue">Logout</button>
-            </form>
+        <div class="account">
+            <div class="button-group-middle">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <!-- Použití tlačítka pro odeslání formuláře -->
+                    <button type="submit" class="btn-dark-blue">Logout</button>
+                </form>
+            </div>
         </div>
 
         <ul class="list-unstyled">
@@ -48,38 +54,40 @@
     @endauth
 
     <ul class="list-unstyled">
-        <li><a href="{{ route('guest.browse-subjects') }}">Zoznam predmetov</a></li>
-
         @auth
             <!-- Admin -->
             @if(Auth::user()->isAdmin())
-                <li><a href="{{ route('admin.panel') }}">Administration</a></li>
-                <li><a href="{{ route('users.index') }}">User Management</a></li>
-                <li><a href="{{ route('manage.rooms') }}">Rooms Management</a></li>
-                <li><a href="{{ route('manage.subjects') }}">Subjects Management</a></li>
+                <li><a class="administration">Administration</a></li>
+                <li><a href="{{ route('users.index') }}" class="administer">User Management</a></li>
+                <li><a href="{{ route('manage.rooms') }}" class="administer">Rooms Management</a></li>
+                <li><a href="{{ route('manage.subjects') }}" class="administer">Subjects Management</a></li>
                 <!-- Další odkazy pro admina -->
             @endif
+        @endauth
 
+        <li><a href="{{ route('guest.browse-subjects') }}">Zoznam predmetov</a></li>
+
+        @auth
             <!-- Garant předmětu -->
-            @if(Auth::user()->isGuarantor())
+            @if(Auth::user()->isGuarantor() or Auth::user()->isAdmin())
                 <li><a href="{{ route('guarantor.manage-activities') }}">Správa výukových aktivít</a></li>
                 <!-- Další odkazy pro garanta -->
             @endif
 
             <!-- Vyučujúci -->
-            @if(Auth::user()->isTeacher())
+            @if(Auth::user()->isTeacher() or Auth::user()->isAdmin())
                 <li><a href="{{ route('teacher.schedule') }}">Môj rozvrh</a></li>
                 <!-- Další odkazy pro vyučujícího -->
             @endif
 
             <!-- Rozvrhár -->
-            @if(Auth::user()->isScheduler())
+            @if(Auth::user()->isScheduler() or Auth::user()->isAdmin())
                 <li><a href="{{ route('scheduler.panel') }}">Rozvrhárský panel</a></li>
                 <!-- Další odkazy pro rozvrháře -->
             @endif
 
             <!-- Študent -->
-            @if(Auth::user()->isStudent())
+            @if(Auth::user()->isStudent() or Auth::user()->isAdmin())
                 <li><a href="{{ route('student.schedule') }}">Môj osobný rozvrh</a></li>
                 <!-- Další odkazy pro studenta -->
             @endif

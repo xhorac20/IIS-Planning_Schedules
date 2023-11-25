@@ -9,7 +9,10 @@
 
         <!-- Hlavní obsah - Zoznam predmetov -->
         <div class="flex-grow-1">
-            <h2 class="text-center">Zoznam Predmetov</h2>
+            <div class="event-title">
+                <h2 class="text-center">Zoznam Predmetov</h2>
+            </div>
+
             <ul>
                 @foreach ($subjects as $subject)
                     <li> - <a href="{{ route('subjects.show', $subject) }}">{{ $subject->name }}</a>

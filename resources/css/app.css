@@ -98,7 +98,8 @@ footer {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-right: 10px;
+    cursor: pointer;
+    margin: 0 5px;
 }
 
 .btn-dark-blue:hover {
@@ -135,64 +136,59 @@ footer {
     padding: 20px;
 }
 
-/* Sidebar */
+/************************************ SIDEBAR **********************************/
 .sidebar {
     width: auto; /* Automatická šířka dle obsahu */
     min-width: 100px; /* Minimální šířka */
-    background-color: #e6f0ff;
-    border: 2px solid #007bff;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.sidebar ul {
-    list-style-type: none;
+    background-color: #2f2f2f;
+    border: 2px solid #262626;
+    border-bottom: none;
+    border-top: none;
     padding: 0;
 }
-
-.sidebar li {
-    padding: 0.5rem 0;
+.sidebar ul {
+    background-color: #262626;
 }
-
 .sidebar span {
-    color: darkgray; /* Oranžová barva textu */
+    color: #262626; /* Oranžová barva textu */
     display: block; /* Změní span na blokový element, aby bylo možné ho vycentrovat */
     text-align: center; /* Centrování textu */
-    margin: 10px 5px; /* Přidává vertikální okraje pro trochu místa kolem textu */
+    padding: 15px 15px 0 15px; /* Přidává vertikální okraje pro trochu místa kolem textu */
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
+    background-color: white;
 }
-
+.sidebar li .administer {
+    color: white;
+    background-color: #6c6c6c;
+    text-decoration: none;
+    padding-left: 35px;
+}
+.sidebar li .administration {
+    background-color: rgba(128, 12, 2, 0.85);
+    text-decoration: none;
+}
+.sidebar li .administration:hover {
+    background-color: rgba(128, 12, 2, 0.85);
+    color: #c9c9c9;
+}
 .sidebar a {
-    text-decoration: none;
-    color: black;
     display: block;
+    color: #c9c9c9;
+    padding: 15px 15px;
 }
-
-/* Specifické styly pro tlačítka Login a Register */
-.sidebar .button-group-right a {
-    color: white;
-}
-
-.sidebar .button-group-middle a {
-    color: white;
-}
-
-/* Styly pro hover stav tlačítek */
-.sidebar .button-group-right a:hover {
-    text-decoration: none;
-    background-color: #003d82;
-}
-
-.sidebar .button-group-middle a:hover {
-    text-decoration: none;
-    background-color: #003d82;
-}
-
 .sidebar a:hover {
-    text-decoration: underline;
+    background-color: #d3d3d3;
+    color: #262626;
+    text-decoration: none;
+}
+.account {
+    background-color: white;
+    padding: 15px 15px;
+    color: #262626;
 }
 
+/***************************************** END SIDEBAR *************************/
 /* Styly pro zobrazení obsahu předmětů */
 ul {
     padding: 0;
@@ -237,41 +233,6 @@ ul li a:hover {
 
 .schedule-slot {
     background-color: #e3f2fd;
-}
-
-
-/* Další styly */
-
-/*********************** TEST MENU *********************/
-.body {
-    display: flex;
-    flex-direction: row;
-}
-.menu {
-    flex-grow: 1;
-    max-width: 250px;
-    min-height: 600px;
-    background-color: chocolate;
-}
-.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: rgba(159, 41, 6, 0.85);
-    overflow: hidden;
-}
-.menu li {
-    display: block;
-}
-.menu li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-.menu li a:hover {
-    background-color: #111;
 }
 
 /******************* USER *****************************/
