@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('educational_activity_id');
             $table->unsignedBigInteger('room_id'); // ID místnosti
             $table->unsignedBigInteger('instructor_id'); // ID vyučujícího
+            $table->string('day');  // Den aktivity
             $table->time('start_time'); // Začátek aktivit
             $table->time('end_time'); // Konec aktivit
             $table->foreign('educational_activity_id')->references('id')->on('educational_activities');
