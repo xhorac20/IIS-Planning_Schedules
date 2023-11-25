@@ -102,7 +102,6 @@ footer {
 .body {
     display: flex;
     flex-direction: row;
-
 }
 .menu {
     flex-grow: 1;
@@ -117,11 +116,9 @@ footer {
     background-color: rgba(159, 41, 6, 0.85);
     overflow: hidden;
 }
-
 .menu li {
     display: block;
 }
-
 .menu li a {
     display: block;
     color: white;
@@ -129,7 +126,6 @@ footer {
     padding: 14px 16px;
     text-decoration: none;
 }
-
 .menu li a:hover {
     background-color: #111;
 }
@@ -149,7 +145,7 @@ footer {
 }
 .event-title h1 {
     color: white;
-    margin: 0px 10px;
+    margin: 0 10px;
 }
 .user-container form {
     display: flex;
@@ -242,13 +238,14 @@ footer {
 }
 .manage-content ul{
     list-style-type: none;
-    padding: 0px;
+    padding: 0;
 }
 .head {
     background-color: rgba(159, 41, 6, 0.85);
     cursor: auto;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    font-weight: 600;
 }
 .head a {
     display: block;
@@ -280,7 +277,6 @@ footer {
 .head-menu li:nth-of-type(3){
     width: 15%;
 }
-
 .head-menu li:nth-of-type(4){
     max-width: 100px;
 }
@@ -302,10 +298,10 @@ footer {
     border: 15px solid rgba(159, 41, 6, 0.85);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin: 0;
 }
 
 /******************* EDIT USER *****************/
-
 .borders {
     display: flex;
     flex-direction: row;
@@ -326,8 +322,8 @@ footer {
 .borders input {
     margin: 5px 5px 5px 15px;
     width: calc(100% - 30px);
+    color: rgba(73, 89, 217, 0.72);
 }
-
 .borders label{
     vertical-align: middle;
     display: flex;
@@ -348,7 +344,62 @@ footer {
 }
 .buttons button:nth-of-type(n) {
     width: 50%;
-    margin-left: 0px;
+    margin-left: 0;
     max-width: 192px;
 }
+.change-password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5px;
+    max-width: 385px;
+}
+.change-password label {
+    margin-top: 10px;
+}
+.change-password input {
+    margin: 5px;
+    max-width: 100%;
+}
+.change-password hr {
+    width: 100%;
+}
+
+/********************* SHOW PROFILE ****************/
+.card {
+    background-color: #007bff;
+    padding: 5px;
+    color: white;
+    border-radius: 15px;
+    margin-top: 15px;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+.card h2 {
+    background-color: #e6f0ff;
+    color: #007bff;
+    border-radius: 10px 10px 0 0;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid #0000d4;
+}
+.card hr {
+    width: 100%;
+}
+.profile-role {
+    position: absolute;
+    background-color: rgba(128, 12, 2, 0.85);
+    color: white;
+    top: 10px;
+    right: 10px;
+    float: right;
+    overflow: hidden;
+    border: 1px solid #0000d4;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
 
