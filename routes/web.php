@@ -80,9 +80,11 @@ Route::resource('educational-activities', EducationalActivitiesController::class
 Route::resource('schedules', SchedulesController::class);
 Route::resource('rooms', RoomsController::class);
 
-// Routa pro procházení předmětů hosty
+// Rúta na prechádzanie predmetov pre hostí
 Route::get('/browse-subjects', [SubjectController::class, 'indexForGuest'])->name('guest.browse-subjects');
 
+// Routa pre pridanie predmetu do rozvrhu
+Route::post('/schedules/add/{subject}', [SchedulesController::class, 'add'])->name('schedule.add')->middleware('auth');
 
 // Import autentizačních rout, pokud používáte Laravel Breeze nebo Jetstream
 require __DIR__ . '/auth.php';

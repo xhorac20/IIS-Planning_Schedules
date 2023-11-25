@@ -11,6 +11,29 @@
     @endguest
 
     @auth
+        @if(Auth::user()->isAdmin())
+            <span>Admin</span>
+        @endif
+
+        @if(Auth::user()->isGuarantor())
+            <span>Garant</span>
+        @endif
+
+        @if(Auth::user()->isTeacher())
+            <span>Vyučujúci</span>
+        @endif
+
+        @if(Auth::user()->isScheduler())
+            <span>Rozvrhár</span>
+        @endif
+
+        @if(Auth::user()->isStudent())
+            <span>Študent</span>
+        @endif
+        <span>{{ Auth::user()->name }}</span>
+    @endauth
+
+    @auth
         <div class="button-group-middle">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -43,19 +66,19 @@
                 <!-- Další odkazy pro garanta -->
             @endif
 
-            <!-- Vyučující -->
+            <!-- Vyučujúci -->
             @if(Auth::user()->isTeacher())
                 <li><a href="{{ route('teacher.schedule') }}">Môj rozvrh</a></li>
                 <!-- Další odkazy pro vyučujícího -->
             @endif
 
-            <!-- Rozvrhář -->
+            <!-- Rozvrhár -->
             @if(Auth::user()->isScheduler())
                 <li><a href="{{ route('scheduler.panel') }}">Rozvrhárský panel</a></li>
                 <!-- Další odkazy pro rozvrháře -->
             @endif
 
-            <!-- Student -->
+            <!-- Študent -->
             @if(Auth::user()->isStudent())
                 <li><a href="{{ route('student.schedule') }}">Môj osobný rozvrh</a></li>
                 <!-- Další odkazy pro studenta -->
