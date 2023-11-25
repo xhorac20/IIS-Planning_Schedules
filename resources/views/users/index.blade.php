@@ -3,16 +3,9 @@
 @section('title', 'Seznam uživatelů')
 
 @section('content')
-    <div class="body">
-        <div class="menu">
-            <ul>
-                <li><a href="#">Domov</a></li>
-                <li><a href="#">O nás</a></li>
-                <li><a href="#">Služby</a></li>
-                <li><a href="#">Kontakt</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </div>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <x-sidebar/>
 
         <div class="user-container">
             <div class="event-title-manage event-title">

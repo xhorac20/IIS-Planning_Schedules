@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -60,13 +61,30 @@ class User extends Authenticatable
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
+
+        if(!isset($data['role'])) {
+            $data['role'] = 'user';
+        }
         $user->role = $data['role'];
 
+//        dd($user);
         // Uložíme uživatele do databáze
-        $user->save();
+//        $user->save();
+        DB::table('users')->insert($data);
 
         // Vrátíme nově vytvořeného uživatele
         return $user;
+    }
+
+    public function getUserRole() {
+        if (!isset($this->role)) {
+            $role = DB::table('users')
+                ->where('id', $this->id)
+                ->first();
+
+            $this->role = $role ? $role->role : 'guest';
+        }
+        return $this->role;
     }
 
 
@@ -77,27 +95,32 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return 'admin' === $this->role;
+        $role = $this->getUserRole();
+        return 'admin' === $role;
     }
 
     public function isGuarantor(): bool
     {
-        return 'guarantor' === $this->role;
+        $role = $this->getUserRole();
+        return 'guarantor' === $role;
     }
 
     public function isTeacher(): bool
     {
-        return 'teacher' === $this->role;
+        $role = $this->getUserRole();
+        return 'teacher' === $role;
     }
 
     public function isScheduler(): bool
     {
-        return 'scheduler' === $this->role;
+        $role = $this->getUserRole();
+        return 'scheduler' === $role;
     }
 
     public function isStudent(): bool
     {
-        return 'student' === $this->role;
+        $role = $this->getUserRole();
+        return 'student' === $role;
     }
 
     //Definuje vztahy, které umožňují uživateli být garantem předmětu a vyučujícím v rozvrhu.

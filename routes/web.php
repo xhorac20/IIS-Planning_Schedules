@@ -35,7 +35,7 @@ Route::get('/', function () {
 // Cesty pre user
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
+Route::post('/users/create', [UserController::class, 'store'])->name('users.save');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::patch('/users/{user}', [UserController::class, 'update']);
 

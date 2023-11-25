@@ -53,16 +53,16 @@
         @auth
             <!-- Admin -->
             @if(Auth::user()->isAdmin())
-                <li><a href="{{ route('admin.panel') }}">Admin Panel</a></li>
-                <li><a href="{{ route('manage.users') }}">Správa užívateľov</a></li>
-                <li><a href="{{ route('manage.rooms') }}">Správa miestností</a></li>
-                <li><a href="{{ route('manage.subjects') }}">Správa predmetov</a></li>
+                <li><a href="{{ route('admin.panel') }}">Administration</a></li>
+                <li><a href="{{ route('users.index') }}">User Management</a></li>
+                <li><a href="{{ route('manage.rooms') }}">Rooms Management</a></li>
+                <li><a href="{{ route('manage.subjects') }}">Subjects Management</a></li>
                 <!-- Další odkazy pro admina -->
             @endif
 
             <!-- Garant předmětu -->
             @if(Auth::user()->isGuarantor())
-                <li><a href="{{ route('manage.activities') }}">Správa výukových aktivít</a></li>
+                <li><a href="{{ route('guarantor.manage-activities') }}">Správa výukových aktivít</a></li>
                 <!-- Další odkazy pro garanta -->
             @endif
 
