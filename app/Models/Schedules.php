@@ -16,11 +16,12 @@ class Schedules extends Model
 
     public function room(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Rooms::class);
+        return $this->belongsTo(Rooms::class, 'room_id');
     }
 
     public function instructor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'instructor_id');
     }
+
 }

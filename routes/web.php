@@ -12,6 +12,7 @@ use App\Http\Controllers\EducationalActivitiesController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,8 +84,12 @@ Route::resource('rooms', RoomsController::class);
 // Rúta na prechádzanie predmetov pre hostí
 Route::get('/browse-subjects', [SubjectController::class, 'indexForGuest'])->name('guest.browse-subjects');
 
-// Routa pre pridanie predmetu do rozvrhu
-Route::post('/schedules/add/{subject}', [SchedulesController::class, 'add'])->name('schedule.add')->middleware('auth');
+// Routa pre pridanie zmazanie a zobrazenie predmetu z a do studentskeho rozvrhu
+Route::post('/schedule/add/{schedule}', [StudentScheduleController::class, 'add'])->name('student-schedule.add')->middleware('isStudent');
+Route::delete('/student-schedule/remove/{scheduleId}', [StudentScheduleController::class, 'remove'])
+    ->name('student-schedule.remove')
+    ->middleware('isStudent');
+Route::get('/student/schedule', [StudentScheduleController::class, 'showSchedule'])->name('student.schedule')->middleware('auth');
 
 // Import autentizačních rout, pokud používáte Laravel Breeze nebo Jetstream
 require __DIR__ . '/auth.php';
