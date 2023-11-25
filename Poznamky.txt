@@ -32,3 +32,10 @@ Instalacia Laravel Breeze
     composer require laravel/breeze --dev
     php artisan breeze:install blade (PHPUnit)
 
+Role Registrovanych:
+    admin       -
+    guarantor   -
+    teacher     -
+    scheduler   -
+    student     -
+    user        - Vie co neregistrovany, len je registrovany
