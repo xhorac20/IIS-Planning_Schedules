@@ -62,7 +62,7 @@
 
             <!-- Garant předmětu -->
             @if(Auth::user()->isGuarantor())
-                <li><a href="{{ route('manage.activities') }}">Správa výukových aktivít</a></li>
+                <li><a href="{{ route('guarantor.manage-activities') }}">Správa výukových aktivít</a></li>
                 <!-- Další odkazy pro garanta -->
             @endif
 

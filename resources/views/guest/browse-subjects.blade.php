@@ -12,19 +12,19 @@
             <h2 class="text-center">Zoznam Predmetov</h2>
             <ul>
                 @foreach ($subjects as $subject)
-                    <div>
                         <li> - <a href="{{ route('subjects.show', $subject) }}">{{ $subject->name }}</a>
                             {{ $subject->description }}
-                            @if (auth()->user()->isStudent())
-                                <form action="{{ route('schedule.add', $subject->id) }}" method="POST"
-                                      style="display: inline;">
-                                    @csrf
-                                    <input type="hidden" name="subject_id" value="{{ $subject->id }}">
-                                    <button type="submit" class="btn-send">Pridať do rozvrhu</button>
-                                </form>
-                            @endif
+                            @auth
+                                @if (auth()->user()->isStudent())
+                                    <form action="{{ route('schedule.add', $subject->id) }}" method="POST"
+                                          style="display: inline;">
+                                        @csrf
+                                        <input type="hidden" name="subject_id" value="{{ $subject->id }}">
+                                        <button type="submit" class="btn-send">Pridať do rozvrhu</button>
+                                    </form>
+                                @endif
+                            @endauth
                         </li>
-                    </div>
                 @endforeach
             </ul>
         </div>
