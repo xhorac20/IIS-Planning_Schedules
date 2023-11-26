@@ -137,12 +137,12 @@ class User extends Authenticatable
 
     public static function find($id): \Illuminate\Database\Eloquent\Builder|Model
     {
-        return self::where('id', $id)->first();
+        return self::where('id', $id, null)->first();
     }
 
-    private static function where(string $string, $id): \Illuminate\Database\Eloquent\Builder
+    public static function where(string $string, $id, $operator): \Illuminate\Database\Eloquent\Builder
     {
-        return self::query()->where($string, $id);
+        return self::query()->where($string, $id, $operator);
     }
 
     public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany

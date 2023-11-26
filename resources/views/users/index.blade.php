@@ -3,6 +3,21 @@
 @section('title', 'Seznam uživatelů')
 
 @section('content')
+    <script>
+        $('#search').on('input', function() {
+
+            var search = $(this).val();
+
+            $.get('/users', {search: search}, function(data) {
+                // zobrazi userov
+            });
+            if(data.length === 0) {
+                $("#users").html("Nothing found");
+            } else {
+                // zobrazi najdenych userov
+            }
+        });
+    </script>
     <div class="d-flex">
         <!-- Sidebar -->
         <x-sidebar/>
@@ -24,10 +39,14 @@
                             <li>Name</li>
                             <li>Email</li>
                             <li>Role</li>
-                            <li><a></a></li>
+                            <form>
+                                <label for="search"></label>
+                                <input type="text" id="search" name="search" placeholder="Search for User"
+                                       value="{{ session()->get('search') ?? request()->get('search') }}">
+                            </form>
                         </ul>
                     </li>
-                    <hr>
+                    <hr class="splitter">
                     @foreach ($users as $user)
                         <li class="items" onclick="location.href = '{{ route('users.show', $user->id) }}'">
                             <ul class="head-menu">
@@ -37,10 +56,11 @@
                                 <li><a href="{{ route('users.edit', $user->id) }}">Edit</a></li>
                             </ul>
                         </li>
-                        <hr>
+                        <hr class="splitter">
                     @endforeach
+                    <hr class="end-table">
                 </ul>
-                <hr class="end-table">
+
             </div>
         </div>
     </div>

@@ -167,10 +167,12 @@ footer {
 .sidebar li .administration {
     background-color: rgba(128, 12, 2, 0.85);
     text-decoration: none;
+    color: white;
 }
 .sidebar li .administration:hover {
     background-color: rgba(128, 12, 2, 0.85);
-    color: #c9c9c9;
+    color: white;
+    transition: all 0.5s;
 }
 .sidebar a {
     display: block;
@@ -352,11 +354,34 @@ ul li a:hover {
     border-top-left-radius: 10px;
     font-weight: 600;
 }
-.head a {
-    display: block;
+.head form {
+    margin: 0 0 0 10px;
+}
+.head form input {
+    width: 70%;
+    margin: auto;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: rgba(159, 41, 6, 0.85);
+    color: white;
+    border: 1px solid white;
+    transition: all 0.5s;
+}
+.head form input:hover {
+    background-color: rgba(62, 59, 59, 0.76);
+}
+.head form input:focus{
+    color: rgba(214, 96, 60, 0.96);
+    background-color: white;
+    transition: all 0.5s;
+    width: 100%;
+}
+.head form input::placeholder:focus {
+    color: rgba(214, 96, 60, 0.96);
+}
+.head form input::placeholder {
     color: white;
     text-align: center;
-    text-decoration: none;
 }
 .head-menu  {
     list-style-type: none;
@@ -377,13 +402,15 @@ ul li a:hover {
     width: 18%;
 }
 .head-menu li:nth-of-type(2){
-    width: 50%;
+    width: 35%;
 }
 .head-menu li:nth-of-type(3){
-    width: 15%;
+    width: 10%;
 }
 .head-menu li:nth-of-type(4){
     max-width: 100px;
+    margin-left: 190px;
+    padding: 6px 10px;
 }
 .items {
     cursor: pointer;
@@ -398,6 +425,18 @@ ul li a:hover {
     color: white;
     text-align: center;
     text-decoration: none;
+    padding: 3px 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+.items a:hover {
+    text-decoration: none;
+    background-color: white;
+    color: rgba(123, 28, 0, 0.92);
+}
+.splitter {
+    margin: 4px 0;
+    border: 1px solid rgba(139, 32, 0, 0.92);
 }
 .end-table {
     border: 15px solid rgba(159, 41, 6, 0.85);

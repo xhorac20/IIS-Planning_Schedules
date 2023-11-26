@@ -38,6 +38,7 @@ Route::get('/users/create', [UserController::class, 'create'])->name('users.crea
 Route::post('/users/create', [UserController::class, 'store'])->name('users.save');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::patch('/users/{user}', [UserController::class, 'update']);
+//Route::get('/users/search', [UserController::class, 'search']);
 
 // Dashboard - chráněný middlewarem
 Route::get('/dashboard', function () {

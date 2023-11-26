@@ -18,9 +18,18 @@ class UserController extends Controller
     {
         return view('users.create');
     }
-    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $users = User::all();
+        $search = $request->input('search');
+
+        if($search) {
+            $users = User::where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->get();
+        } else {
+            $users = User::all();
+        }
+        session()->put('search', $request->input('search'));
         return view('users.index', compact('users'));
     }
     public function edit(User $user): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -61,6 +70,7 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('status', 'profile-updated');
     }
+
     public function show($userId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $user = User::find($userId);
