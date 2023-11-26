@@ -24,25 +24,22 @@
                     <tr>
                         <td>{{ $day }}</td>
                         @for ($i = 7; $i <= 20;)
-                            @php
-                                $isScheduled = false;
-                                $colspan = 1;
-                                $subjectDetail = '';
-                            @endphp
                             @if (!empty($scheduleData[$day]) && !empty($scheduleData[$day][$i]))
                                 @php
                                     $isScheduled = true;
-                                    $subjectDetail = $scheduleData[$day][$i]['subject'] . ' (' . $scheduleData[$day][$i]['type'] . ') ' . $scheduleData[$day][$i]['room'];
-                                    $duration = $scheduleData[$day][$i]['duration'];
-                                    $colspan = ceil($duration / 60);
-                                    $i += $colspan; // Skip slots covered by colspan
+                                    $maxDuration = max(array_column($scheduleData[$day][$i], 'duration'));
+                                    $colspan = ceil($maxDuration / 60);
                                 @endphp
                                 <td class="schedule-slot" colspan="{{ $colspan }}">
-                                    {{ $subjectDetail }}
-                                    Trvanie: {{ $duration }} min
+                                    @foreach ($scheduleData[$day][$i] as $activity)
+                                        <div>{{ $activity['subject'] }} ({{ $activity['type'] }}
+                                            ) {{ $activity['room'] }}</div>
+                                        <div>{{ $activity['repetition'] }}</div>
+                                        <div>{{ $activity['event_date'] }}</div>
+                                    @endforeach
                                 </td>
-                            @endif
-                            @if (!$isScheduled)
+                                @php $i += $colspan; @endphp
+                            @else
                                 <td class="schedule-slot"></td>
                                 @php $i++; @endphp
                             @endif

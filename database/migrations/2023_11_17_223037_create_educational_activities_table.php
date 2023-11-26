@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('type'); // Typ aktivity (přednáška, cvičení, atd.)
             $table->integer('duration');
             $table->string('repetition'); // Opakování (každý, sudý, lichý týden, jednorázově)
+            $table->date('event_date')->nullable();
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->timestamps();
         });

@@ -91,6 +91,6 @@ Route::delete('/student-schedule/remove/{scheduleId}', [StudentScheduleControlle
     ->middleware('isStudent');
 Route::get('/student/schedule', [StudentScheduleController::class, 'showSchedule'])->name('student.schedule')->middleware('auth');
 
-// Import autentizačních rout, pokud používáte Laravel Breeze nebo Jetstream
+// Import autentizačních rout, Laravel Breeze
 require __DIR__ . '/auth.php';
 

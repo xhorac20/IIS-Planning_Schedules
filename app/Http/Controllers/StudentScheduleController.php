@@ -67,33 +67,47 @@ class StudentScheduleController extends Controller
     public function showSchedule()
     {
         $user = auth()->user();
+        $today = Carbon::today();
 
         $studentSchedules = StudentSchedule::where('user_id', $user->id)
-            ->with(['schedule' => function ($query) {
-                $query->with(['educationalActivity.subject', 'room', 'instructor']);
+            ->with(['schedule' => function ($query) use ($today) {
+                $query->with(['educationalActivity' => function ($query) use ($today) {
+                    $query->where(function ($query) use ($today) {
+                        $query->where('repetition', '!=', 'Jednorázovo')
+                            ->orWhere(function ($query) use ($today) {
+                                $query->where('repetition', '=', 'Jednorázovo')
+                                    ->whereDate('event_date', '>=', $today);
+                            });
+                    });
+                    $query->with('subject', 'room');
+                }, 'room']);
             }])->get();
 
         $scheduleData = [];
         foreach ($studentSchedules as $studentSchedule) {
-            $day = $studentSchedule->schedule->day;
-            $startHour = Carbon::parse($studentSchedule->schedule->start_time)->format('G');
-            $endHour = Carbon::parse($studentSchedule->schedule->end_time)->format('G');
-            $duration = $studentSchedule->schedule->educationalActivity->duration;
-            $subjectCode = $studentSchedule->schedule->educationalActivity->subject->code;
-            $type = $studentSchedule->schedule->educationalActivity->type;
-            $roomName = $studentSchedule->schedule->room->name;
+            if ($studentSchedule->schedule && $studentSchedule->schedule->educationalActivity) {
+                $day = $studentSchedule->schedule->day;
+                $startHour = Carbon::parse($studentSchedule->schedule->start_time)->format('G');
+                $educationalActivity = $studentSchedule->schedule->educationalActivity;
+                $duration = $educationalActivity->duration;
+                $subjectCode = $educationalActivity->subject->code;
+                $type = $educationalActivity->type;
+                $roomName = $studentSchedule->schedule->room->name;
+                $repetition = $educationalActivity->repetition;
+                $event_date = $educationalActivity->event_date;
 
-            // Zde se přidávají klíče 'subject', 'type', 'room' a 'duration' do pole
-            $scheduleData[$day][$startHour] = [
-                'subject' => $subjectCode,
-                'type' => $type,
-                'room' => $roomName,
-                'duration' => $duration
-            ];
+                $scheduleData[$day][$startHour][] = [
+                    'subject' => $subjectCode,
+                    'type' => $type,
+                    'room' => $roomName,
+                    'duration' => $duration,
+                    'repetition' => $repetition,
+                    'event_date' => $event_date
+                ];
+            }
         }
 
         return view('student.student-schedule', compact('scheduleData'));
     }
-
 }
 
