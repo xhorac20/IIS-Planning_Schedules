@@ -9,6 +9,8 @@ class Schedules extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['educational_activity_id', 'room_id', 'instructor_id', 'day', 'start_time', 'end_time'];
+
     public function educationalActivity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(EducationalActivities::class);

@@ -17,12 +17,6 @@ class SchedulerController extends Controller
         return view('scheduler.index');
     }
 
-    public function manageSchedules()
-    {
-        // TODO check if there is anything to manage
-        return view('scheduler.manage-schedules');
-    }
-
     /**
      * Zobrazí formulář pro vytvoření nového rozvrhu.
      */
