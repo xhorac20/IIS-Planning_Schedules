@@ -4,19 +4,40 @@
 
 @section('content')
     <script>
-        $('#search').on('input', function() {
+        $('#search').on('input', function () {
 
             var search = $(this).val();
 
-            $.get('/users', {search: search}, function(data) {
+            $.get('/users', {search: search}, function (data) {
                 // zobrazi userov
             });
-            if(data.length === 0) {
+            if (data.length === 0) {
                 $("#users").html("Nothing found");
             } else {
                 // zobrazi najdenych userov
             }
         });
+
+
+        $(document).ready(function () {
+            // Ked sa nacita stranka prida sa element
+            $('#Alert').fadeIn();
+
+            // Po 15 sekundach sa zavola funkcia na skrytie alertu
+            setTimeout(function () {
+                hideAlert();
+            }, 15000); // 15 sekund
+        });
+
+        function hideAlert() {
+            // Trieda s animaciou vystupu
+            $('#Alert').fadeOut();
+
+            // skončení animácie sa element odstrani
+            setTimeout(function () {
+                $('#Alert').remove();
+            }, 1000);
+        }
     </script>
     <div class="d-flex">
         <!-- Sidebar -->
@@ -25,9 +46,10 @@
         <div class="user-container">
             <div class="event-title-manage event-title">
                 <h1>User Management</h1>
-                @if(session('success'))
-                    <div class="alert alert-success">
+                @if(session('success') || session('status'))
+                    <div class="alert" id="Alert">
                         {{ session('success') }}
+                        {{ session('status') }}
                     </div>
                 @endif
                 <a href="{{ route('users.create') }}" class="create-button btn-dark-blue">Create User</a>

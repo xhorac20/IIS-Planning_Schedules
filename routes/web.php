@@ -38,7 +38,13 @@ Route::get('/users/create', [UserController::class, 'create'])->name('users.crea
 Route::post('/users/create', [UserController::class, 'store'])->name('users.save');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::patch('/users/{user}', [UserController::class, 'update']);
-//Route::get('/users/search', [UserController::class, 'search']);
+
+// Cesty pre Room Management
+Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms.index');
+Route::get('/rooms/create', [RoomsController::class, 'create'])->name('rooms.create');
+Route::post('/rooms/create', [RoomsController::class, 'store'])->name('rooms.save');
+Route::get('/rooms/{room}/edit', [RoomsController::class, 'edit'])->name('rooms.edit');
+Route::patch('/rooms/{room}', [RoomsController::class, 'update']);
 
 // Dashboard - chráněný middlewarem
 Route::get('/dashboard', function () {

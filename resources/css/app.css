@@ -332,6 +332,13 @@ ul li a:hover {
     flex-grow: 8;
     vertical-align: middle;
 }
+.alert {
+    color: white;
+    background-color: rgba(62, 59, 59, 0.76);
+    border: 2px solid #262626;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
 .create-button {
     width: 90px;
     background-color: #007bff;
@@ -545,5 +552,10 @@ ul li a:hover {
     margin: 0;
     text-transform: uppercase;
 }
-
-
+/**************************************** ROOMS MANAGEMENT **********************/
+.create-room-button {
+    width: 115px;
+}
+.create-room-button:hover {
+    width: 115px;
+}

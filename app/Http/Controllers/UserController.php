@@ -68,7 +68,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index')->with('status', 'profile-updated');
+        return redirect()->route('users.index', ['user' => $user->id])->with('status', 'User "' . $user->name . '" Updated!');
     }
 
     public function show($userId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -95,7 +95,8 @@ class UserController extends Controller
             'role' => $request->input('role'),
         ]);
 
-        return redirect()->route('users.index')->with('success', 'Používateľ vytvorený a uložený!');
+        return redirect()->route('users.index')
+            ->with('success', 'User "' . $request->input('name') . '" Created !');
     }
     // V ProfileController nebo jiném relevantním controlleru
     public function showSubjects()

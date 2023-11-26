@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
@@ -127,22 +128,20 @@ class User extends Authenticatable
     public static function findOrFail($id): \Illuminate\Database\Eloquent\Builder|Model
     {
         $user = self::find($id);
-
         if (!$user) {
-            abort(404);
+            throw new ModelNotFoundException();
         }
-
         return $user;
     }
 
     public static function find($id): \Illuminate\Database\Eloquent\Builder|Model
     {
-        return self::where('id', $id, null)->first();
+        return self::where('id', $id)->first();
     }
 
-    public static function where(string $string, $id, $operator): \Illuminate\Database\Eloquent\Builder
+    public static function where(string $column, $operator = null, $value = null): \Illuminate\Database\Eloquent\Builder
     {
-        return self::query()->where($string, $id, $operator);
+        return self::query()->where($column, $operator, $value);
     }
 
     public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -59,8 +59,8 @@
             @if(Auth::user()->isAdmin())
                 <li><a class="administration">Administration</a></li>
                 <li><a href="{{ route('users.index') }}" class="administer">User Management</a></li>
-                <li><a href="{{ route('manage.rooms') }}" class="administer">Rooms Management</a></li>
-                <li><a href="{{ route('manage.subjects') }}" class="administer">Subjects Management</a></li>
+                <li><a href="{{ route('rooms.index') }}" class="administer">Rooms Management</a></li>
+                <li><a href="{{ route('subjects.index') }}" class="administer">Subjects Management</a></li>
                 <!-- Další odkazy pro admina -->
             @endif
         @endauth

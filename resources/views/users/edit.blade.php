@@ -3,13 +3,41 @@
 @section('title', 'Upravit uživatele')
 
 @section('content')
+    <script>
+        $(document).ready(function () {
+            // Ked sa nacita stranka prida sa element
+            $('#Alert').fadeIn();
+
+            // Po 15 sekundach sa zavola funkcia na skrytie alertu
+            setTimeout(function () {
+                hideAlert();
+            }, 15000); // 15 sekund
+        });
+
+        function hideAlert() {
+            // Trieda s animaciou vystupu
+            $('#Alert').fadeOut();
+
+            // skončení animácie sa element odstrani
+            setTimeout(function () {
+                $('#Alert').remove();
+            }, 1000);
+        }
+    </script>
+
     <div class="d-flex">
         <!-- Sidebar -->
         <x-sidebar/>
 
         <div class="user-container">
-            <div class="event-title">
+            <div class="event-title-manage event-title">
                 <h1>Edit User: {{ $user->name }}</h1>
+                @if(session('success') || session('status'))
+                    <div class="alert" id="Alert">
+                        {{ session('success') }}
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
 
             <form method="POST" action="{{ route('users.update', $user) }}">
