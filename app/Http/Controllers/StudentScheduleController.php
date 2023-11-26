@@ -64,50 +64,69 @@ class StudentScheduleController extends Controller
     }
 
 
+    // Controller
     public function showSchedule()
     {
         $user = auth()->user();
         $today = Carbon::today();
 
+        // Získajte všetky rozvrhové položky pre študenta
         $studentSchedules = StudentSchedule::where('user_id', $user->id)
             ->with(['schedule' => function ($query) use ($today) {
                 $query->with(['educationalActivity' => function ($query) use ($today) {
-                    $query->where(function ($query) use ($today) {
-                        $query->where('repetition', '!=', 'Jednorázovo')
-                            ->orWhere(function ($query) use ($today) {
-                                $query->where('repetition', '=', 'Jednorázovo')
-                                    ->whereDate('event_date', '>=', $today);
-                            });
-                    });
-                    $query->with('subject', 'room');
-                }, 'room']);
-            }])->get();
+                    $query->where('repetition', '!=', 'Jednorázovo')
+                        ->orWhere(function ($query) use ($today) {
+                            $query->where('repetition', '=', 'Jednorázovo')
+                                ->whereDate('event_date', '>=', $today);
+                        });
+                    $query->with(['subject', 'room']);
+                }]);
+            }])
+            ->get();
 
-        $scheduleData = [];
-        foreach ($studentSchedules as $studentSchedule) {
-            if ($studentSchedule->schedule && $studentSchedule->schedule->educationalActivity) {
-                $day = $studentSchedule->schedule->day;
-                $startHour = Carbon::parse($studentSchedule->schedule->start_time)->format('G');
-                $educationalActivity = $studentSchedule->schedule->educationalActivity;
-                $duration = $educationalActivity->duration;
-                $subjectCode = $educationalActivity->subject->code;
-                $type = $educationalActivity->type;
-                $roomName = $studentSchedule->schedule->room->name;
-                $repetition = $educationalActivity->repetition;
-                $event_date = $educationalActivity->event_date;
-
-                $scheduleData[$day][$startHour][] = [
-                    'subject' => $subjectCode,
-                    'type' => $type,
-                    'room' => $roomName,
-                    'duration' => $duration,
-                    'repetition' => $repetition,
-                    'event_date' => $event_date
-                ];
-            }
-        }
+        // Spracujte dáta a vytvorte štruktúru pre zobrazenie v šablóne
+        $scheduleData = $this->processSchedules($studentSchedules);
 
         return view('student.student-schedule', compact('scheduleData'));
     }
+
+    private function processSchedules($studentSchedules)
+    {
+        $scheduleData = [];
+
+        foreach ($studentSchedules as $studentSchedule) {
+            if ($studentSchedule->schedule && $studentSchedule->schedule->educationalActivity) {
+                $activity = $studentSchedule->schedule;
+                $day = $activity->day;
+                $startTime = Carbon::parse($activity->start_time);
+                $endTime = Carbon::parse($activity->end_time);
+
+                // Získajte potrebné informácie z aktivity
+                $subjectCode = $activity->educationalActivity->subject->code;
+                $type = $activity->educationalActivity->type;
+                $roomName = $activity->room->name;
+                $repetition = $activity->educationalActivity->repetition;
+                $event_date = $activity->educationalActivity->event_date;
+
+                // Vytvorte záznam pre každú hodinu, počas ktorej aktivita prebieha
+                while ($startTime->lessThanOrEqualTo($endTime)) {
+                    $hour = $startTime->format('G');
+                    $scheduleData[$day][$hour][] = [
+                        'subject' => $subjectCode,
+                        'type' => $type,
+                        'room' => $roomName,
+                        'start' => $startTime->format('H:i'),
+                        'end' => $endTime->format('H:i'),
+                        'repetition' => $repetition,
+                        'event_date' => $event_date
+                    ];
+                    $startTime->addHour();
+                }
+            }
+        }
+
+        return $scheduleData;
+    }
+
 }
 

@@ -20,7 +20,7 @@ class EducationalActivities extends Model
         'duration',
         'type',
         'repetition',
-        'subject_id', // předpokládá, že existuje vztah s předmětem (Subject)
+        'subject_id',
         // Další atributy podle potřeby
     ];
 

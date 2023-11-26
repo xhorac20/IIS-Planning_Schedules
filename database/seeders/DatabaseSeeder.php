@@ -63,6 +63,7 @@ class DatabaseSeeder extends Seeder
             ['subject_id' => 6, 'type' => 'Cvičenie', 'duration' => 110, 'repetition' => 'Nepárny', 'event_date' => null],
             ['subject_id' => 6, 'type' => 'Skúška', 'duration' => 50, 'repetition' => 'Jednorázovo', 'event_date' => \Carbon\Carbon::create(2023, 11, 28),],
             ['subject_id' => 6, 'type' => 'Skúška', 'duration' => 50, 'repetition' => 'Jednorázovo', 'event_date' => \Carbon\Carbon::create(2023, 10, 27),],
+            ['subject_id' => 1, 'type' => 'Prednáška', 'duration' => 110, 'repetition' => 'Každý', 'event_date' => null],
             // Ďalšie záznamy...
         ]);
 
@@ -112,6 +113,7 @@ class DatabaseSeeder extends Seeder
         // Vloženie rozvrhov day = 'Po', 'Ut', 'St', 'Št', 'Pi'
         DB::table('schedules')->insert([
             ['educational_activity_id' => 1, 'room_id' => 1, 'instructor_id' => 2, 'day' => 'Po', 'start_time' => '08:00:00', 'end_time' => '09:50:00'],
+            ['educational_activity_id' => 27, 'room_id' => 1, 'instructor_id' => 2, 'day' => 'Po', 'start_time' => '08:00:00', 'end_time' => '09:50:00'],
             ['educational_activity_id' => 2, 'room_id' => 1, 'instructor_id' => 3, 'day' => 'Po', 'start_time' => '09:00:00', 'end_time' => '10:50:00'],
             ['educational_activity_id' => 3, 'room_id' => 1, 'instructor_id' => 2, 'day' => 'St', 'start_time' => '08:00:00', 'end_time' => '09:50:00'],
             ['educational_activity_id' => 4, 'room_id' => 1, 'instructor_id' => 3, 'day' => 'Št', 'start_time' => '08:00:00', 'end_time' => '09:50:00'],
