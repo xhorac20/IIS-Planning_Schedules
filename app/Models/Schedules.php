@@ -5,6 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $educational_activity_id
+ * @property int $room_id
+ * @property int $instructor_id
+ * @property string $day
+ * @property string $start_time
+ * @property string $end_time
+ * @property EducationalActivities $educationalActivity
+ * @property Rooms $room
+ * @property User $instructor
+ */
 class Schedules extends Model
 {
     use HasFactory;
