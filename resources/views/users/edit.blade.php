@@ -38,6 +38,14 @@
                         {{ session('status') }}
                     </div>
                 @endif
+                <form class="delete-button create-button" action="{{ route('users.destroy', $user->id) }}"
+                      method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="create-button" type="submit"
+                            onclick="return confirm('Are you sure you want to delete this {{ $user->name }} ?')">Delete
+                    </button>
+                </form>
             </div>
 
             <form method="POST" action="{{ route('users.update', $user) }}">
@@ -58,7 +66,8 @@
                         <select name="role" id="role">
                             <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
                             <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="guarantor" {{ $user->role == 'guarantor' ? 'selected' : '' }}>Guarantor</option>
+                            <option value="guarantor" {{ $user->role == 'guarantor' ? 'selected' : '' }}>Guarantor
+                            </option>
                             <option value="teacher" {{ $user->role == 'teacher' ? 'selected' : '' }}>Teacher</option>
                             <option value="scheduler" {{ $user->role == 'scheduler' ? 'selected' : '' }}>Scheduler
                             </option>

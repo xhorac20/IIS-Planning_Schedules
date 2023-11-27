@@ -159,7 +159,7 @@ footer {
 /************************************ SIDEBAR **********************************/
 .sidebar {
     width: auto; /* Automatická šířka dle obsahu */
-    min-width: 100px; /* Minimální šířka */
+    min-width: 140px; /* Minimální šířka */
     background-color: #2f2f2f;
     border: 2px solid #262626;
     border-bottom: none;
@@ -438,7 +438,7 @@ ul li a:hover {
 }
 .head-menu li:nth-of-type(4){
     max-width: 100px;
-    margin-left: 190px;
+    margin-left: 100px;
     padding: 6px 10px;
 }
 .items {
@@ -458,12 +458,24 @@ ul li a:hover {
     padding: 3px 20px;
     border-radius: 10px;
     border: 1px solid white;
+    background-color: unset;
 }
+.items a:nth-of-type(2n) {
+    background-color: #0000d4;
+}
+.items ul li a:nth-of-type(2) {
+    background-color: #0000d4;
+}
+
 .items a:hover {
     text-decoration: none;
     background-color: white;
     color: rgba(123, 28, 0, 0.92);
     transition: all 0.3s;
+}
+.items a:nth-of-type(2):hover {
+    background-color: #8d0000;
+    color: white;
 }
 .splitter {
     margin: 4px 0;
@@ -516,6 +528,10 @@ ul li a:hover {
 .buttons {
     display: flex;
     flex-direction: row;
+}
+.delete-button {
+    background-color: #8d0000;
+    border: 2px solid #580000;
 }
 .buttons button:nth-of-type(n) {
     width: 50%;
@@ -592,6 +608,48 @@ ul li a:hover {
 }
 
 
+.event-title-manage form {
+    margin-top: 10px;
+
+}
+.delete-button {
+    background-color: unset;
+    border: none !important;
+    margin: 0 !important;
+    margin-right: 30px !important;
+    width: 120px !important;
+}
+.delete-button:hover {
+    background-color: unset !important;
+}
+.delete-button button{
+    background-color: #8d0000;
+    border: 2px solid #580000 !important;
+    width: 120px;
+    padding: 15px 25px !important;
+}
+.delete-all {
+    background-color: unset;
+    border: none !important;
+    margin: 0 !important;
+    /*    margin-right: 30px !important;*/
+    /*    width: 120px !important;*/
+}
+.delete-all:hover {
+    background-color: unset !important;
+}
+.delete-all button{
+    background-color: #8d0000;
+    border: 2px solid #580000 !important;
+    /*    width: 120px;*/
+    padding: 6px 15px !important;
+    border-radius: 10px;
+    margin: 0 0 0 10px;
+}
+.head-menu li:last-of-type {
+    padding: 6px 10px;
+}
+
 /******************************** SUBJECT MANAGEMENT *************************/
 .create-sub-button {
     width: 100px;
@@ -624,5 +682,5 @@ ul li a:hover {
     padding: 10px;
 }
 .head-menu-sub form {
-    margin-left: 0;
+    margin: 3px 0;
 }

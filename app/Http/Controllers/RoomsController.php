@@ -66,6 +66,13 @@ class RoomsController extends Controller
         $room = Rooms::find($userId);
         return view('rooms.show', compact('room'));
     }
+    public function destroy($id): RedirectResponse
+    {
+        $room = Rooms::findOrFail($id);
+        $room->delete();
+
+        return redirect()->route('rooms.index')->with('success', 'Room "' . $room->name . '" was deleted!');
+    }
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {

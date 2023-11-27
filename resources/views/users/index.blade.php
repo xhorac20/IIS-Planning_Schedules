@@ -63,7 +63,7 @@
                             <li>Role</li>
                             <form>
                                 <label for="search"></label>
-                                <input type="text" id="search" name="search" placeholder="Search for User"
+                                <input type="text" id="search" name="search" placeholder="Search User"
                                        value="{{ session()->get('search') ?? request()->get('search') }}">
                             </form>
                         </ul>
@@ -75,7 +75,18 @@
                                 <li>{{ $user->name }}</li>
                                 <li>{{ $user->email }}</li>
                                 <li>{{ ucfirst($user->role) }}</li>
-                                <li><a href="{{ route('users.edit', $user->id) }}">Edit</a></li>
+                                <li style="display: flex; flex-direction: row"><a
+                                        href="{{ route('users.edit', $user->id) }}">Edit</a>
+                                    <form class="delete-all" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                onclick="return confirm('Are you sure you want to delete this {{ $user->name }} ?')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </li>
+                                {{--                                <li><a href="{{ route('users.edit', $user->id) }}">Edit</a></li>--}}
                             </ul>
                         </li>
                         <hr class="splitter">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -21,10 +22,9 @@ class SubjectController extends Controller
             $subjects = Subject::all();
         }
 
-        session()->put('search', $request->input('search'));
         $users = User::all();
 
-//        return view('subjects.index', compact('subjects'));
+        session()->put('search', $request->input('search'));
         return view('subjects.index', ['subjects' => $subjects, 'users' => $users]);
     }
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -97,6 +97,14 @@ class SubjectController extends Controller
 
         return redirect()->route('subjects.index')
             ->with('success', 'Subject "' . $request->input('name') . '" Created !');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+
+        return redirect()->route('subjects.index')->with('success', 'Subject "' . $subject->name . '" was deleted!');
     }
 
     // Metoda pro zobrazení anotací předmětů pro hosty (neregistrované uživatele)

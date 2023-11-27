@@ -39,6 +39,14 @@
                     </div>
                 @endif
                 <a href="{{ route('subjects.edit', $subject) }}" class="create-button btn-dark-blue">Edit</a>
+                <form class="delete-button create-button" action="{{ route('subjects.destroy', $subject->id) }}"
+                      method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="create-button" type="submit"
+                            onclick="return confirm('Are you sure you want to delete this {{ $subject->name }} ?')">Delete
+                    </button>
+                </form>
             </div>
             <div class="card">
                 <h2>{{ $subject['name'] }}</h2>
