@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
     // Guarantor routy
     Route::middleware(['isGuarantor'])->group(function () {
         Route::get('/guarantor/activities', [GuarantorController::class, 'manageActivities'])->name('guarantor.manage-activities')->middleware('isGuarantor');
-        Route::get('/guarantor/assign-teachers', [GuarantorController::class, 'assignTeachers'])->name('guarantor.assign-teachers')->middleware('isGuarantor');
+        Route::get('/manage-activities/{activityId}/schedule', [GuarantorController::class, 'manageOrCreateTimeTable'])->name('manage-activities.manage-schedule')->middleware('isGuarantor');
     });
 
     // Teacher routy
@@ -80,6 +80,9 @@ Route::resource('subjects', SubjectController::class);
 Route::resource('educational-activities', EducationalActivitiesController::class);
 Route::resource('schedules', SchedulesController::class);
 Route::resource('rooms', RoomsController::class);
+
+Route::post('/subject/{subject}/add-teacher', [GuarantorController::class, 'addTeacher'])->name('subject.add-teacher');
+Route::delete('/subject/{subject}/remove-teacher/{teacher}', [GuarantorController::class, 'removeTeacher'])->name('subject.remove-teacher');
 
 // Rúta na prechádzanie predmetov pre hostí
 Route::get('/browse-subjects', [SubjectController::class, 'indexForGuest'])->name('guest.browse-subjects');

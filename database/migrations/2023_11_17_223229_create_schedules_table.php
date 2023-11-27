@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,8 +18,8 @@ return new class extends Migration
             $table->string('day');  // Den aktivity
             $table->time('start_time'); // Začátek aktivit
             $table->time('end_time'); // Konec aktivit
-            $table->foreign('educational_activity_id')->references('id')->on('educational_activities');
-            $table->foreign('room_id')->references('id')->on('rooms'); // Předpokládá existenci tabulky místností
+            $table->foreign('educational_activity_id')->references('id')->on('educational_activities')->onDelete('cascade');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->foreign('instructor_id')->references('id')->on('users');
             $table->timestamps();
         });

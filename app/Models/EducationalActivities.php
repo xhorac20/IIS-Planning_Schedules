@@ -5,6 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $type
+ * @property int $duration
+ * @property string $repetition
+ * @property string|null $event_date
+ * @property int|null $room_id
+ * @property int|null $teacher_id
+ * @property array|null $preferred_day_time
+ */
 class EducationalActivities extends Model
 {
     use HasFactory;
@@ -21,8 +31,17 @@ class EducationalActivities extends Model
         'type',
         'repetition',
         'subject_id',
-        // Další atributy podle potřeby
+        'event_date',
+        'room_id',
+        'teacher_id',
+        'preferred_day_time',
+        // Dalsie atributy podla potreby
     ];
+
+    protected $casts = [
+        'preferred_day_time' => 'array',
+    ];
+
 
     /**
      * Získá předmět, ke kterému aktivita patří.

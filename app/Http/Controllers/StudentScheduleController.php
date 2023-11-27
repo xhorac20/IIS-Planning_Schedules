@@ -93,6 +93,7 @@ class StudentScheduleController extends Controller
     private function processSchedules($studentSchedules)
     {
         $scheduleData = [];
+        $minutesInHour = 60; // Počet minút v hodine
 
         foreach ($studentSchedules as $studentSchedule) {
             if ($studentSchedule->schedule && $studentSchedule->schedule->educationalActivity) {
@@ -111,12 +112,15 @@ class StudentScheduleController extends Controller
                 // Vytvorte záznam pre každú hodinu, počas ktorej aktivita prebieha
                 while ($startTime->lessThanOrEqualTo($endTime)) {
                     $hour = $startTime->format('G');
+                    $duration = $startTime->diffInMinutes($endTime->min($startTime->copy()->endOfHour()));
+
                     $scheduleData[$day][$hour][] = [
                         'subject' => $subjectCode,
                         'type' => $type,
                         'room' => $roomName,
                         'start' => $startTime->format('H:i'),
                         'end' => $endTime->format('H:i'),
+                        'duration' => ($duration / $minutesInHour) * 100, // Percentuálny podiel trvania
                         'repetition' => $repetition,
                         'event_date' => $event_date
                     ];

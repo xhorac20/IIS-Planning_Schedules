@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('annotation')->nullable(); // Anotace předmětu
             $table->integer('credits');
             $table->unsignedBigInteger('guarantor_id'); // ID garanta předmětu
+            $table->json('teacher_ids')->nullable();   // Zoznam ID ucitelov predmetu
+
             $table->foreign('guarantor_id')->references('id')->on('users');
             $table->timestamps();
         });
