@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/scheduler/panel', [SchedulerController::class, 'index'])->name('scheduler.panel')->middleware('isScheduler');
         // TODO move to panel?
         Route::get('/scheduler/manage-schedules', [ManageSchedulesController::class, 'indexForScheduler'])->name('scheduler.manage-schedules')->middleware('isScheduler');
-        Route::post('/scheduler/manage-schedules/add', [ManageSchedulesController::class, 'add'])->name('manage-schedules.add')->middleware('isScheduler');
+        Route::post('/scheduler/manage-schedules/edit', [ManageSchedulesController::class, 'edit'])->name('manage-schedules.edit')->middleware('isScheduler');
     });
 
     // Student routy

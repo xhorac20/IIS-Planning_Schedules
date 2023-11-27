@@ -8,7 +8,7 @@
         <x-sidebar/>
 
         <!-- Hlavní obsah -->
-        {{-- TODO CSS, simplify form --}}
+        {{-- TODO CSS, simplify form, add schedule DELETION --}}
         @php
             $localized = [
                 'monday' => 'Pondělí',
@@ -23,9 +23,13 @@
             @if(session('success'))
                 <h4 class="text-center">{{ session('success') }}</h4>
             @endif
-            <form action="{{ route('manage-schedules.add') }}" method="POST">
+            @if(session('failure'))
+                <h4 class="text-center" style="color: firebrick">{{ session('failure') }}</h4>
+            @endif
+            <form action="{{ route('manage-schedules.edit') }}" method="POST" id="schedule">
                 @csrf
                 <div>
+                    <h4>Výběr výukové aktivity:</h4>
                     <table style="border: 1px solid black">
                         <thead>
                         <tr>
@@ -50,6 +54,7 @@
                     </table><br>
                 </div>
                 <div>
+                    <h4>Výběr místnosti:</h4>
                     <table style="border: 1px solid black">
                         <thead>
                         <tr>
@@ -71,6 +76,7 @@
                 </div>
                 <div>
                     <table style="border: 1px solid black">
+                        <h4>Výběr vyučujícího:</h4>
                         <thead>
                         <tr>
                             <th>Volba</th>
@@ -108,9 +114,29 @@
                     @for ($hour = 8; $hour <= 20; $hour++)
                         <option value="{{ sprintf('%02d:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
                     @endfor
-                </select>
+                </select><br>
 
-                <button type="submit" class="btn-send">Uložit rozvrh aktivity</button><br><br>
+                <h4 class="text-center" id="incomplete" style="display: none; color: firebrick">Chyba: před uložením je nutné zvolit výukovou aktivitu, místnost a vyučujícího</h4>
+                <button type="submit" class="btn-send">Uložit rozvrhové aktivity</button><br><br>
             </form>
         </div>
+        <script>
+            // verify that required inputs are provided
+            document.getElementById('schedule').addEventListener('submit', function(event)
+            {
+                let valid = true;
+                ['educational_activity_id', 'room_id', 'instructor_id'].forEach(function(name)
+                {
+                    if (!document.querySelector('input[name="' + name + '"]:checked'))
+                    {
+                        valid = false;
+                    }
+                });
+                if (!valid)
+                {
+                    event.preventDefault();
+                    document.getElementById('incomplete').style.display = 'block';
+                }
+            });
+        </script>
 @endsection
