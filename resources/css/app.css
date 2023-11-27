@@ -369,7 +369,7 @@ ul li a:hover {
     margin: 0 0 0 10px;
 }
 .head form input {
-    width: 70%;
+    width: 50%;
     margin: auto;
     padding: 5px 15px;
     border-radius: 10px;
@@ -563,4 +563,39 @@ ul li a:hover {
 .create-room-button:hover {
     width: 120px;
     transition: all 0.3s;
+}
+
+/******************************** SUBJECT MANAGEMENT *************************/
+.create-sub-button {
+    width: 100px;
+}
+.create-sub-button:hover {
+    width: 100px;
+    transition: all 0.3s;
+}
+.head-menu-sub {
+
+}
+/* code */
+.head-menu-sub li:nth-of-type(1){
+    width: 50px;
+}
+/* name */
+.head-menu-sub li:nth-of-type(2){
+    width: 280px;
+}
+/* credits */
+.head-menu-sub li:nth-of-type(3){
+    width: 55px;
+    text-align: center;
+}
+/* guarantor */
+.head-menu-sub li:nth-of-type(4){
+    width: 180px;
+    max-width: none;
+    margin-left: 0;
+    padding: 10px;
+}
+.head-menu-sub form {
+    margin-left: 0;
 }

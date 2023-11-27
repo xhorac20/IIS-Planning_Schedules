@@ -52,20 +52,19 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <a href="{{ route('subjects.create') }}" class="create-button btn-dark-blue">Add Subject</a>
+                <a href="{{ route('subjects.create') }}" class="create-button create-sub-button btn-dark-blue">Add Subject</a>
             </div>
             <div class="manage-content">
                 <ul>
                     <li class="head">
-                        <ul class="head-menu">
+                        <ul class="head-menu head-menu-sub">
                             <li>Code</li>
                             <li>Name</li>
-                            <li>Annotation</li>
                             <li>Credits</li>
                             <li>Guarantor</li>
                             <form>
                                 <label for="search"></label>
-                                <input type="text" id="search" name="search" placeholder="Search Subjects"
+                                <input type="text" id="search" name="search" placeholder="Search for subjects"
                                        value="{{ session()->get('search') ?? request()->get('search') }}">
                             </form>
                         </ul>
@@ -73,12 +72,11 @@
                     <hr class="splitter">
                     @foreach ($subjects as $subject)
                         <li class="items" onclick="location.href = '{{ route('subjects.show', $subject->id) }}'">
-                            <ul class="head-menu">
+                            <ul class="head-menu head-menu-sub">
                                 <li>{{ $subject['code'] }}</li>
                                 <li>{{ $subject['name'] }}</li>
-                                <li>{{ $subject['annotation'] }}</li>
                                 <li>{{ $subject['credits'] }}</li>
-                                <li>{{ $subject['guarantor_id'] }}</li>
+                                <li>{{ $users->find($subject['guarantor_id'])->name }}</li>
                                 <li><a href="{{ route('subjects.edit', $subject->id) }}">Edit</a></li>
                             </ul>
                         </li>

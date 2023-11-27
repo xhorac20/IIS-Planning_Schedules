@@ -21,16 +21,9 @@ class SubjectController extends Controller
             $subjects = Subject::all();
         }
 
-
         session()->put('search', $request->input('search'));
-
-        $subjects = Subject::all();
-//        dd($subjects);
-        $subjects = Subject::all();
         $users = User::all();
-        foreach ($subjects as $subject) {
-            echo $subject['code'];
-        }
+
 //        return view('subjects.index', compact('subjects'));
         return view('subjects.index', ['subjects' => $subjects, 'users' => $users]);
     }
