@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedules;
 use Carbon\Carbon;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Http\Request;
 use App\Models\EducationalActivities;
 use App\Models\Rooms;
@@ -13,6 +14,7 @@ class ManageSchedulesController extends Controller
 {
     public function indexForScheduler()
     {
+        $schedules = Schedules::with('educationalActivity', 'room', 'instructor')->get();
         $activities = EducationalActivities::with('subject')
             ->join('subjects', 'subjects.id', '=', 'educational_activities.subject_id')
             ->orderBy('subjects.name')
@@ -20,7 +22,7 @@ class ManageSchedulesController extends Controller
             ->get();
         $rooms = Rooms::all();
         $requirements = ScheduleRequirement::with('instructor')->orderByRaw("FIELD(day, 'monday', 'tuesday', 'wednesday', 'thursday', 'friday')")->get();
-        return view('scheduler.manage-schedules', compact('activities', 'rooms', 'requirements'));
+        return view('scheduler.manage-schedules', compact('schedules', 'activities', 'rooms', 'requirements'));
     }
 
     public function edit(Request $request)
@@ -66,8 +68,6 @@ class ManageSchedulesController extends Controller
             return redirect()->back()->with('failure', 'Chyba: zvolený vyučující v tento den není volný');
         }
 
-
-
         Schedules::updateOrCreate(
             [
                 'educational_activity_id' => $request->input('educational_activity_id'),
@@ -82,5 +82,18 @@ class ManageSchedulesController extends Controller
         );
 
         return redirect()->back()->with('success', 'Výuková aktivita byla přidána do rozvrhu.');
+    }
+
+    public function remove(Request $request)
+    {
+        $ids = $request->input('schedules_id', []);
+        foreach ($ids as $id)
+        {
+            $schedule = Schedules::where('id', $id);
+            if($schedule){
+                $schedule->delete();
+            }
+        }
+        return redirect()->back()->with('successRemove', 'Odebrání z rozvrhu proběhlo úspěšně.');
     }
 }

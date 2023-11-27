@@ -8,7 +8,7 @@
         <x-sidebar/>
 
         <!-- Hlavní obsah -->
-        {{-- TODO CSS, simplify form, add schedule DELETION --}}
+        {{-- TODO CSS --}}
         @php
             $localized = [
                 'monday' => 'Pondělí',
@@ -20,6 +20,56 @@
         @endphp
         <div class="flex-grow-1">
             <h2 class="text-center">Správa rozvrhů</h2>
+            @if(session('successRemove'))
+                <input type="checkbox" id="toggle" name="toggle" onchange="document.getElementById('removeSchedule').style.display = this.checked ? 'block' : 'none'" checked>
+            @else
+                <input type="checkbox" id="toggle" name="toggle" onchange="document.getElementById('removeSchedule').style.display = this.checked ? 'block' : 'none'">
+            @endif
+
+            <label for="toggle">Zobrazit stávající aktivity (odebrání z rozvrhu)</label>
+            <form action="{{ route('manage-schedules.remove') }}" method="POST" id="removeSchedule" style="display: none">
+                <h3>Odebrání aktivit z rozvrhu:</h3>
+                @if(session('successRemove'))
+                    <h4 class="text-center">{{ session('successRemove') }}</h4>
+                @endif
+                @csrf
+                <div>
+                    <table style="border: 1px solid black">
+                        <thead>
+                        <tr>
+                            <th>Volba</th>
+                            <th>Předmět</th>
+                            <th>Typ</th>
+                            <th>Vyučující</th>
+                            <th>Místnost</th>
+                            <th>Den</th>
+                            <th>Začátek</th>
+                            <th>Konec</th>
+                            <th>Opakování</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($schedules as $schedule)
+                                <tr>
+                                    <td><input type="checkbox" id="schedules_id" name="schedules_id[]" value="{{ $schedule->id }}"><label for="schedules_id"></label></td>
+                                    <td>{{ $schedule->educationalActivity->subject->name }}</td>
+                                    <td>{{ $schedule->educationalActivity->type }}</td>
+                                    <td>{{ $schedule->instructor->name }}</td>
+                                    <td>{{ $schedule->room->name }}</td>
+                                    <td>{{ $schedule->day }}</td>
+                                    <td>{{ $schedule->start_time }}</td>
+                                    <td>{{ $schedule->end_time }}</td>
+                                    <td>{{ $schedule->educationalActivity->repetition }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn-send">Odebrat aktivity z rozvrhu</button><br><br>
+                    <hr><br>
+                </div>
+            </form>
+
+            <h3>Přídání aktivity do rozvrhu:</h3>
             @if(session('success'))
                 <h4 class="text-center">{{ session('success') }}</h4>
             @endif
@@ -139,18 +189,22 @@
             </form>
         </div>
         <script>
+            if(document.getElementById('toggle').checked)
+            {
+                document.getElementById('removeSchedule').style.display = 'block';
+            }
             // verify that required inputs are provided
             document.getElementById('schedule').addEventListener('submit', function(event)
             {
                 let valid = true;
                 ['educational_activity_id', 'room_id', 'instructor_id'].forEach(function(name)
                 {
-                    if (!document.querySelector('input[name="' + name + '"]:checked'))
+                    if(!document.querySelector('input[name="' + name + '"]:checked'))
                     {
                         valid = false;
                     }
                 });
-                if (!valid)
+                if(!valid)
                 {
                     event.preventDefault();
                     document.getElementById('incomplete').style.display = 'block';
