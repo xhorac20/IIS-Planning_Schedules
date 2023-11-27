@@ -88,6 +88,24 @@ footer {
     float: right;
 }
 
+.btn-remove {
+    background-color: darkred;
+    color: white;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+}
+
+.btn-send:hover {
+    background-color: #003d82;
+    cursor: pointer;
+}
+
+.btn-remove:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
 .btn-dark-blue {
     background-color: #0056b3;
     color: white;
@@ -105,6 +123,7 @@ footer {
 .btn-dark-blue:hover {
     background-color: #003d82;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .text-center {
@@ -206,6 +225,7 @@ ul li a {
 
 ul li a:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .schedule-container {
@@ -564,6 +584,13 @@ ul li a:hover {
     width: 120px;
     transition: all 0.3s;
 }
+.activity{
+    background-color: #e6f0ff;
+    border: 2px solid #007bff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
 
 /******************************** SUBJECT MANAGEMENT *************************/
 .create-sub-button {

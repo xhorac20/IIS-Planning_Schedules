@@ -12,6 +12,7 @@ use App\Http\Controllers\EducationalActivitiesController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     // Guarantor routy
     Route::middleware(['isGuarantor'])->group(function () {
         Route::get('/guarantor/activities', [GuarantorController::class, 'manageActivities'])->name('guarantor.manage-activities')->middleware('isGuarantor');
-        Route::get('/guarantor/assign-teachers', [GuarantorController::class, 'assignTeachers'])->name('guarantor.assign-teachers')->middleware('isGuarantor');
+        Route::get('/manage-activities/{activityId}/schedule', [GuarantorController::class, 'manageOrCreateTimeTable'])->name('manage-activities.manage-schedule')->middleware('isGuarantor');
     });
 
     // Teacher routy
@@ -101,12 +102,19 @@ Route::resource('educational-activities', EducationalActivitiesController::class
 Route::resource('schedules', SchedulesController::class);
 Route::resource('rooms', RoomsController::class);
 
+Route::post('/subject/{subject}/add-teacher', [GuarantorController::class, 'addTeacher'])->name('subject.add-teacher');
+Route::delete('/subject/{subject}/remove-teacher/{teacher}', [GuarantorController::class, 'removeTeacher'])->name('subject.remove-teacher');
+
 // Rúta na prechádzanie predmetov pre hostí
 Route::get('/browse-subjects', [SubjectController::class, 'indexForGuest'])->name('guest.browse-subjects');
 
-// Routa pre pridanie predmetu do rozvrhu
-Route::post('/schedules/add/{subject}', [SchedulesController::class, 'add'])->name('schedule.add')->middleware('auth');
+// Routa pre pridanie zmazanie a zobrazenie predmetu z a do studentskeho rozvrhu
+Route::post('/schedule/add/{schedule}', [StudentScheduleController::class, 'add'])->name('student-schedule.add')->middleware('isStudent');
+Route::delete('/student-schedule/remove/{scheduleId}', [StudentScheduleController::class, 'remove'])
+    ->name('student-schedule.remove')
+    ->middleware('isStudent');
+Route::get('/student/schedule', [StudentScheduleController::class, 'showSchedule'])->name('student.schedule')->middleware('auth');
 
-// Import autentizačních rout, pokud používáte Laravel Breeze nebo Jetstream
+// Import autentizačních rout, Laravel Breeze
 require __DIR__ . '/auth.php';
 

@@ -69,26 +69,26 @@
 
         @auth
             <!-- Garant předmětu -->
-            @if(Auth::user()->isGuarantor() or Auth::user()->isAdmin())
+            @if(Auth::user()->isGuarantor() || Auth::user()->isAdmin())
                 <li><a href="{{ route('guarantor.manage-activities') }}">Správa výukových aktivít</a></li>
                 <!-- Další odkazy pro garanta -->
             @endif
 
-            <!-- Vyučujúci -->
-            @if(Auth::user()->isTeacher() or Auth::user()->isAdmin())
-                <li><a href="{{ route('teacher.schedule') }}">Môj rozvrh</a></li>
-                <!-- Další odkazy pro vyučujícího -->
-            @endif
-
             <!-- Rozvrhár -->
-            @if(Auth::user()->isScheduler() or Auth::user()->isAdmin())
+            @if(Auth::user()->isScheduler() || Auth::user()->isAdmin())
                 <li><a href="{{ route('scheduler.panel') }}">Rozvrhárský panel</a></li>
                 <!-- Další odkazy pro rozvrháře -->
             @endif
 
+            <!-- Vyučujúci -->
+            @if(Auth::user()->isTeacher() || Auth::user()->isGuarantor() || Auth::user()->isScheduler() || Auth::user()->isAdmin())
+                <li><a href="{{ route('teacher.schedule') }}">Môj rozvrh výuky</a></li>
+                <!-- Další odkazy pro vyučujícího -->
+            @endif
+
             <!-- Študent -->
-            @if(Auth::user()->isStudent() or Auth::user()->isAdmin())
-                <li><a href="{{ route('student.schedule') }}">Môj osobný rozvrh</a></li>
+            @if(Auth::user()->isStudent() || Auth::user()->isAdmin())
+                <li><a href="{{ route('student.schedule') }}">Môj študijny rozvrh</a></li>
                 <!-- Další odkazy pro studenta -->
             @endif
         @endauth
