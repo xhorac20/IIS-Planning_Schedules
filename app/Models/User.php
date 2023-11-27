@@ -97,5 +97,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Schedules::class, 'instructor_id');
     }
+
+    public function scheduleRequirements(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ScheduleRequirement::class, 'instructor_id');
+    }
     // Jakékoli další metody...
 }

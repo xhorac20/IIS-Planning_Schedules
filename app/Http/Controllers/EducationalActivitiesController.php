@@ -15,6 +15,7 @@ use Illuminate\Http\Response;
 
 class EducationalActivitiesController extends Controller
 {
+
     /**
      * Zobraziť zoznam všetkých výukových aktivít.
      *
