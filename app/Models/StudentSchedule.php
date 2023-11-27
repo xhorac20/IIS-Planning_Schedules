@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int $schedule_id
+ * @property Schedules $schedule
+ * @property User $student
+ */
 class StudentSchedule extends Model
 {
     use HasFactory;

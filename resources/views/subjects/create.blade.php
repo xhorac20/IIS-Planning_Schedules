@@ -3,22 +3,70 @@
 @section('title', 'Vytvořit nový předmět')
 
 @section('content')
-    <h1>Vytvořit nový předmět</h1>
+    <script>
+        $(document).ready(function () {
+            // Ked sa nacita stranka prida sa element
+            $('#Alert').fadeIn();
 
-    <form method="POST" action="{{ route('subjects.store') }}">
-        @csrf
-        <label for="code">Kód:</label>
-        <input type="text" name="code" id="code" required>
+            // Po 15 sekundach sa zavola funkcia na skrytie alertu
+            setTimeout(function () {
+                hideAlert();
+            }, 15000); // 15 sekund
+        });
 
-        <label for="name">Název:</label>
-        <input type="text" name="name" id="name" required>
+        function hideAlert() {
+            // Trieda s animaciou vystupu
+            $('#Alert').fadeOut();
 
-        <label for="annotation">Anotace:</label>
-        <textarea name="annotation" id="annotation"></textarea>
+            // skončení animácie sa element odstrani
+            setTimeout(function () {
+                $('#Alert').remove();
+            }, 1000);
+        }
+    </script>
 
-        <label for="credits">Počet kreditů:</label>
-        <input type="number" name="credits" id="credits" required>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <x-sidebar/>
 
-        <button type="submit">Vytvořit předmět</button>
-    </form>
+        <div class="user-container">
+            <div class="event-title">
+                <h1>Create new Subject</h1>
+                @if(session('success') || session('status'))
+                    <div class="alert" id="Alert">
+                        {{ session('success') }}
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
+            <form method="POST" action="{{ route('subjects.store') }}">
+                @csrf
+                <label for="code"></label>
+                <input type="text" name="code" id="code" placeholder="Code" required>
+
+                <label for="name"></label>
+                <input type="text" name="name" id="name" placeholder="Name" required>
+
+                <label for="annotation"></label>
+                <input type="text" name="annotation" id="annotation" placeholder="Annotation" required>
+
+                <label for="credits"></label>
+                <input type="number" name="credits" id="credits" placeholder="Credits" required>
+
+                <label for="guarantor_id">
+                    <select name="guarantor_id" id="guarantor_id" required>
+                        <option>-- None --</option>
+                        @foreach($users as $user)
+                            @if($user->role === 'guarantor')
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </label>
+
+                <button type="submit">Create Subject</button>
+                <button type="button" onclick="location.href = '{{ route('subjects.index') }}'">Cancel</button>
+            </form>
+        </div>
+    </div>
 @endsection
