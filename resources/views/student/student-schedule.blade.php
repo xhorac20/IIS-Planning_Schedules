@@ -14,16 +14,16 @@
                 <thead>
                 <tr>
                     <th>Hodina / Deň</th>
-                    @foreach (['Po', 'Ut', 'St', 'Št', 'Pi'] as $day)
-                        <th>{{ $day }}</th>
-                    @endforeach
+                    @for ($hour = 7; $hour <= 20; $hour++)
+                        <th>{{ $hour }}:00</th>
+                    @endfor
                 </tr>
                 </thead>
                 <tbody>
-                @for ($hour = 7; $hour <= 20; $hour++)
+                @foreach (['Po', 'Ut', 'St', 'Št', 'Pi'] as $day)
                     <tr>
-                        <td>{{ $hour }}:00</td>
-                        @foreach (['Po', 'Ut', 'St', 'Št', 'Pi'] as $day)
+                        <td>{{ $day }}</td>
+                        @for ($hour = 7; $hour <= 20; $hour++)
                             <td class="schedule-slot">
                                 @if (!empty($scheduleData[$day][$hour]))
                                     @foreach ($scheduleData[$day][$hour] as $activity)
@@ -36,11 +36,13 @@
                                             @endif
                                         </div>
                                     @endforeach
+                                @else
+                                    <!-- Sem môžete vložiť obsah pre prázdne sloty -->
                                 @endif
                             </td>
-                        @endforeach
+                        @endfor
                     </tr>
-                @endfor
+                @endforeach
                 </tbody>
             </table>
         </div>

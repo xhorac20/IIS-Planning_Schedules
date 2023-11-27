@@ -116,11 +116,13 @@ footer {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-right: 10px;
+    cursor: pointer;
+    margin: 0 5px;
 }
 
 .btn-dark-blue:hover {
     background-color: #003d82;
+    transition: all 0.5s;
     cursor: pointer;
 }
 
@@ -154,67 +156,62 @@ footer {
     padding: 20px;
 }
 
-/* Sidebar */
+/************************************ SIDEBAR **********************************/
 .sidebar {
     width: auto; /* Automatická šířka dle obsahu */
-    min-width: 100px; /* Minimální šířka */
-    background-color: #e6f0ff;
-    border: 2px solid #007bff;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.sidebar ul {
-    list-style-type: none;
+    min-width: 140px; /* Minimální šířka */
+    background-color: #2f2f2f;
+    border: 2px solid #262626;
+    border-bottom: none;
+    border-top: none;
     padding: 0;
 }
-
-.sidebar li {
-    padding: 0.5rem 0;
+.sidebar ul {
+    background-color: #262626;
 }
-
 .sidebar span {
-    color: darkgray; /* Oranžová barva textu */
+    color: #262626; /* Oranžová barva textu */
     display: block; /* Změní span na blokový element, aby bylo možné ho vycentrovat */
     text-align: center; /* Centrování textu */
-    margin: 10px 5px; /* Přidává vertikální okraje pro trochu místa kolem textu */
+    padding: 15px 15px 0 15px; /* Přidává vertikální okraje pro trochu místa kolem textu */
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
+    background-color: white;
 }
-
+.sidebar li .administer {
+    color: white;
+    background-color: #6c6c6c;
+    text-decoration: none;
+    padding-left: 35px;
+}
+.sidebar li .administration {
+    background-color: rgba(128, 12, 2, 0.85);
+    text-decoration: none;
+    color: white;
+}
+.sidebar li .administration:hover {
+    background-color: rgba(128, 12, 2, 0.85);
+    color: white;
+    transition: all 0.5s;
+}
 .sidebar a {
-    text-decoration: none;
-    color: black;
     display: block;
+    color: #c9c9c9;
+    padding: 15px 15px;
 }
-
-/* Specifické styly pro tlačítka Login a Register */
-.sidebar .button-group-right a {
-    color: white;
-}
-
-.sidebar .button-group-middle a {
-    color: white;
-}
-
-/* Styly pro hover stav tlačítek */
-.sidebar .button-group-right a:hover {
-    text-decoration: none;
-    background-color: #003d82;
-    cursor: pointer;
-}
-
-.sidebar .button-group-middle a:hover {
-    text-decoration: none;
-    background-color: #003d82;
-    cursor: pointer;
-}
-
 .sidebar a:hover {
-    text-decoration: underline;
-    cursor: pointer;
+    background-color: #d3d3d3;
+    color: #262626;
+    text-decoration: none;
+
+}
+.account {
+    background-color: white;
+    padding: 15px 15px;
+    color: #262626;
 }
 
+/***************************************** END SIDEBAR *************************/
 /* Styly pro zobrazení obsahu předmětů */
 ul {
     padding: 0;
@@ -262,6 +259,347 @@ ul li a:hover {
     background-color: #e3f2fd;
 }
 
+/******************* USER *****************************/
+/* Vytvaranie noveho uzivatela */
+.user-container {
+    min-width: 300px;
+    min-height: 600px;
+    background-color: #e6f0ff;
+    padding: 10px 50px 10px 50px;
+    flex-grow: 4;
+}
+.event-title {
+    background-color: rgba(128, 12, 2, 0.85);
+    padding: 10px;
+}
+.event-title h1 {
+    color: white;
+    margin: 0 10px;
+}
+.user-container form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.user-container input {
+    max-width: 270px;
+    border: 1px solid #007bff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+}
+.user-container input::placeholder {
+    color: rgba(73, 89, 217, 0.72);
+}
+.user-container select {
+    max-width: 300px;
+    border: 1px solid #007bff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+    color: rgba(73, 89, 217, 0.72);
+}
+.user-container select option {
+    color: rgba(73, 89, 217, 0.72);
+    padding: 10px 15px;
+    height: 20px;
+    margin-top: 5px;
+}
+.user-container button {
+    max-width: 300px;
+    background-color: #0056b3;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+}
+.user-container button:nth-of-type(2){
+    max-width: 300px;
+    background-color: #8d0000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+}
+
+/******************* USER MANAGEMENT *****************/
+.event-title-manage {
+    background-color: rgba(128, 12, 2, 0.85);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.event-title-manage h1 {
+    flex-grow: 8;
+    vertical-align: middle;
+}
+.alert {
+    color: white;
+    background-color: rgba(62, 59, 59, 0.76);
+    border: 2px solid #262626;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.create-button {
+    width: 90px;
+    background-color: #007bff;
+    border: 2px solid #0056b3;
+    margin: 10px 10px;
+    transition: all 0.5s;
+}
+.create-button:hover{
+    background-color: #edf5ff;
+    color: #0056b3;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.manage-content ul{
+    list-style-type: none;
+    padding: 0;
+}
+.head {
+    background-color: rgba(159, 41, 6, 0.85);
+    cursor: auto;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-weight: 600;
+}
+.head form {
+    margin: 0 0 0 10px;
+}
+.head form input {
+    width: 50%;
+    margin: auto;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: rgba(159, 41, 6, 0.85);
+    color: white;
+    border: 1px solid white;
+    transition: all 0.5s;
+}
+.head form input:hover {
+    background-color: rgba(62, 59, 59, 0.76);
+}
+.head form input:focus{
+    color: rgba(214, 96, 60, 0.96);
+    background-color: white;
+    transition: all 0.5s;
+    width: 100%;
+}
+.head form input::placeholder:focus {
+    color: rgba(214, 96, 60, 0.96);
+}
+.head form input::placeholder {
+    color: white;
+    text-align: center;
+}
+.head-menu  {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.head-menu li {
+    display: block;
+    padding: 10px;
+    color: white;
+}
+.head-menu li:nth-of-type(1){
+    width: 18%;
+}
+.head-menu li:nth-of-type(2){
+    width: 35%;
+}
+.head-menu li:nth-of-type(3){
+    width: 10%;
+}
+.head-menu li:nth-of-type(4){
+    max-width: 100px;
+    margin-left: 100px;
+    padding: 6px 10px;
+}
+.items {
+    cursor: pointer;
+    background-color: rgba(214, 96, 60, 0.96);
+    text-align: left;
+}
+.items:hover {
+    background-color: rgba(139, 32, 0, 0.92);
+    transition: all 0.5s;
+}
+.items a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 3px 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: unset;
+}
+.items a:nth-of-type(2n) {
+    background-color: #0000d4;
+}
+.items ul li a:nth-of-type(2) {
+    background-color: #0000d4;
+}
+
+.items a:hover {
+    text-decoration: none;
+    background-color: white;
+    color: rgba(123, 28, 0, 0.92);
+    transition: all 0.3s;
+}
+.items a:nth-of-type(2):hover {
+    background-color: #8d0000;
+    color: white;
+}
+.splitter {
+    margin: 4px 0;
+    border: 1px solid rgba(139, 32, 0, 0.92);
+}
+.end-table {
+    border: 15px solid rgba(159, 41, 6, 0.85);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin: 0;
+}
+
+/******************* EDIT USER *****************/
+.borders {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid blue;
+    background-color: #007bff;
+    color: white;
+    max-width: 380px;
+    border-radius: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.borders-role {
+    display: block;
+}
+.borders input {
+    margin: 5px 5px 5px 15px;
+    width: calc(100% - 30px);
+    color: rgba(73, 89, 217, 0.72);
+}
+.borders label{
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.borders select {
+    margin: 5px 5px 5px 15px;
+    width: calc(100% - 30px);
+    justify-content: space-between;
+}
+.borders input[type="email"] {
+    width: calc(100% - 30px);
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+.delete-button {
+    background-color: #8d0000;
+    border: 2px solid #580000;
+}
+.buttons button:nth-of-type(n) {
+    width: 50%;
+    margin-left: 0;
+    max-width: 192px;
+}
+.change-password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5px;
+    max-width: 385px;
+}
+.change-password label {
+    margin-top: 10px;
+}
+.change-password input {
+    margin: 5px;
+    max-width: 100%;
+}
+.change-password hr {
+    width: 100%;
+}
+
+/********************* SHOW PROFILE ****************/
+.card {
+    background-color: #007bff;
+    padding: 5px;
+    color: white;
+    border-radius: 15px;
+    margin-top: 15px;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+.card h2 {
+    background-color: #e6f0ff;
+    color: #007bff;
+    border-radius: 10px 10px 0 0;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid #0000d4;
+}
+.card hr {
+    width: 100%;
+}
+.profile-role {
+    position: absolute;
+    background-color: rgba(128, 12, 2, 0.85);
+    color: white;
+    top: 10px;
+    right: 10px;
+    float: right;
+    overflow: hidden;
+    border: 1px solid #0000d4;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin: 0;
+    text-transform: uppercase;
+}
+/**************************************** ROOMS MANAGEMENT **********************/
+.create-room-button {
+    width: 120px;
+}
+.create-room-button:hover {
+    width: 120px;
+    transition: all 0.3s;
+}
 .activity{
     background-color: #e6f0ff;
     border: 2px solid #007bff;
@@ -270,4 +608,79 @@ ul li a:hover {
 }
 
 
-/* Další styly */
+.event-title-manage form {
+    margin-top: 10px;
+
+}
+.delete-button {
+    background-color: unset;
+    border: none !important;
+    margin: 0 !important;
+    margin-right: 30px !important;
+    width: 120px !important;
+}
+.delete-button:hover {
+    background-color: unset !important;
+}
+.delete-button button{
+    background-color: #8d0000;
+    border: 2px solid #580000 !important;
+    width: 120px;
+    padding: 15px 25px !important;
+}
+.delete-all {
+    background-color: unset;
+    border: none !important;
+    margin: 0 !important;
+    /*    margin-right: 30px !important;*/
+    /*    width: 120px !important;*/
+}
+.delete-all:hover {
+    background-color: unset !important;
+}
+.delete-all button{
+    background-color: #8d0000;
+    border: 2px solid #580000 !important;
+    /*    width: 120px;*/
+    padding: 6px 15px !important;
+    border-radius: 10px;
+    margin: 0 0 0 10px;
+}
+.head-menu li:last-of-type {
+    padding: 6px 10px;
+}
+
+/******************************** SUBJECT MANAGEMENT *************************/
+.create-sub-button {
+    width: 100px;
+}
+.create-sub-button:hover {
+    width: 100px;
+    transition: all 0.3s;
+}
+.head-menu-sub {
+
+}
+/* code */
+.head-menu-sub li:nth-of-type(1){
+    width: 50px;
+}
+/* name */
+.head-menu-sub li:nth-of-type(2){
+    width: 280px;
+}
+/* credits */
+.head-menu-sub li:nth-of-type(3){
+    width: 55px;
+    text-align: center;
+}
+/* guarantor */
+.head-menu-sub li:nth-of-type(4){
+    width: 180px;
+    max-width: none;
+    margin-left: 0;
+    padding: 10px;
+}
+.head-menu-sub form {
+    margin: 3px 0;
+}
