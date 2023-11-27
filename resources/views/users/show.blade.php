@@ -38,7 +38,7 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <a href="{{ route('users.edit', $user) }}" class="create-button btn-dark-blue">Upravit</a>
+                <a href="{{ route('users.edit', $user) }}" class="create-button btn-dark-blue">Edit</a>
             </div>
             <div class="card">
                 <h2>{{ $user->name }}</h2>

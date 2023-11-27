@@ -18,15 +18,15 @@
             }
         });
 
-
+        // Animacia Alertu zmizne po 10 sekundach
         $(document).ready(function () {
             // Ked sa nacita stranka prida sa element
             $('#Alert').fadeIn();
 
-            // Po 15 sekundach sa zavola funkcia na skrytie alertu
+            // Po 10 sekundach sa zavola funkcia na skrytie alertu
             setTimeout(function () {
                 hideAlert();
-            }, 15000); // 15 sekund
+            }, 10000); // 15 sekund
         });
 
         function hideAlert() {

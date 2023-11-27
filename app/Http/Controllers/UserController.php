@@ -55,7 +55,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'nullable|min:8',
-            'role' => 'required|in:user,admin,garant,teacher,scheduler,student'
+            'role' => 'required|in:user,admin,guarantor,teacher,scheduler,student'
         ]);
 
         $user->name = $request->name;
@@ -84,7 +84,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:8',
-            'role' => 'required|in:user,admin,garant,teacher,scheduler,student',
+            'role' => 'required|in:user,admin,guarantor,teacher,scheduler,student',
         ]);
 
         // Vytvorenie používateľa a uloženie do databázy

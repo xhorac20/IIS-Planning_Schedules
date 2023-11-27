@@ -50,12 +50,11 @@
                 <label for="password"></label>
                 <input type="password" name="password" id="password" placeholder="Password" required>
 
-                <label for="role"></label>
-                <label>
+                <label for="role">
                     <select name="role" required>
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
-                        <option value="garant">Garant</option>
+                        <option value="guarantor">Guarantor</option>
                         <option value="teacher">Teacher</option>
                         <option value="scheduler">Scheduler</option>
                         <option value="student">Student</option>

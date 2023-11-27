@@ -46,6 +46,13 @@ Route::post('/rooms/create', [RoomsController::class, 'store'])->name('rooms.sav
 Route::get('/rooms/{room}/edit', [RoomsController::class, 'edit'])->name('rooms.edit');
 Route::patch('/rooms/{room}', [RoomsController::class, 'update']);
 
+// Cesty pre Subjects Management
+Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects.index');
+Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
+Route::post('/subjects/create', [SubjectController::class, 'store'])->name('subjects.save');
+Route::get('/subjects/{room}/edit', [SubjectController::class, 'edit'])->name('subjects.edite');
+Route::patch('/subjects/{room}', [SubjectController::class, 'update']);
+
 // Dashboard - chráněný middlewarem
 Route::get('/dashboard', function () {
     return view('dashboard');

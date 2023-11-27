@@ -58,7 +58,7 @@
                         <select name="role" id="role">
                             <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
                             <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="garant" {{ $user->role == 'garant' ? 'selected' : '' }}>Garant</option>
+                            <option value="guarantor" {{ $user->role == 'guarantor' ? 'selected' : '' }}>Guarantor</option>
                             <option value="teacher" {{ $user->role == 'teacher' ? 'selected' : '' }}>Teacher</option>
                             <option value="scheduler" {{ $user->role == 'scheduler' ? 'selected' : '' }}>Scheduler
                             </option>
