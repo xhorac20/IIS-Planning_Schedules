@@ -57,7 +57,7 @@
                             <button type="submit" class="btn-send">Pridať</button>
                         </form>
 
-                        <h5>Výukové aktivity:</h5>
+                        <h4>Výukové aktivity:</h4>
                         <ul class="vyuka">
                             @foreach ($activities[$subject->id] as $activity)
                                 <li>{{ $activity->type }} - trvanie: {{ $activity->duration }} minút

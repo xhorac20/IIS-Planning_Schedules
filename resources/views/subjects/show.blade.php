@@ -16,7 +16,7 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                @if(Auth::user()->isAdmin())
+                @if(Auth::check() && Auth::user()->isAdmin())
                     <a href="{{ route('subjects.edit', $subject) }}" class="create-button btn-dark-blue">Edit</a>
                     <form class="delete-button create-button" action="{{ route('subjects.destroy', $subject->id) }}"
                           method="POST">

@@ -682,8 +682,12 @@ footer {
 .card-body h4 {
     margin-bottom: 5px;
 }
+.card-body form {
+    padding: 10px;
+}
 .card-body ul button {
     padding: 10px;
+    margin-right: 10px;
 }
 .vyuka li {
     margin: 10px 0;
