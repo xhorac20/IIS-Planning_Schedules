@@ -26,12 +26,12 @@ class DatabaseSeeder extends Seeder
 
         // Vloženie predmetov
         DB::table('subjects')->insert([
-            ['code' => 'IMA2', 'name' => 'Matematická analýza 2', 'annotation' => 'text', 'credits' => 4, 'guarantor_id' => 2],
-            ['code' => 'IIS', 'name' => 'Informační systémy', 'annotation' => 'text', 'credits' => 4, 'guarantor_id' => 2],
-            ['code' => 'IMS', 'name' => 'Modelování a simulace', 'annotation' => 'text', 'credits' => 5, 'guarantor_id' => 2],
-            ['code' => 'ISA', 'name' => 'Síťové aplikace a správa sítí', 'annotation' => 'text', 'credits' => 5, 'guarantor_id' => 2],
-            ['code' => 'IAL', 'name' => 'Algoritmy', 'annotation' => '', 'credits' => 5, 'guarantor_id' => 2],
-            ['code' => 'IFJ', 'name' => 'Formální jazyky a překladače', 'annotation' => 'text', 'credits' => 5, 'guarantor_id' => 2],
+            ['code' => 'IMA2', 'name' => 'Matematická analýza 2', 'annotation' => 'text', 'credits' => 4, 'guarantor_id' => 2, 'teacher_ids' => '"[2, 3]"'],
+            ['code' => 'IIS', 'name' => 'Informační systémy', 'annotation' => 'text', 'credits' => 4, 'guarantor_id' => 2, 'teacher_ids' => '"[2, 3]"'],
+            ['code' => 'IMS', 'name' => 'Modelování a simulace', 'annotation' => 'text', 'credits' => 5, 'guarantor_id' => 2, 'teacher_ids' => '"[2, 3]"'],
+            ['code' => 'ISA', 'name' => 'Síťové aplikace a správa sítí', 'annotation' => 'text', 'credits' => 5, 'guarantor_id' => 2, 'teacher_ids' => '"[2, 3]"'],
+            ['code' => 'IAL', 'name' => 'Algoritmy', 'annotation' => '', 'credits' => 5, 'guarantor_id' => 2, 'teacher_ids' => '"[2, 3]"'],
+            ['code' => 'IFJ', 'name' => 'Formální jazyky a překladače', 'annotation' => 'text', 'credits' => 5, 'guarantor_id' => 2, 'teacher_ids' => '"[2, 3]"'],
             // Ďalšie záznamy...
         ]);
 

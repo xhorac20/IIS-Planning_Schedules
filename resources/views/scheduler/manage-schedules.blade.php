@@ -26,7 +26,7 @@
                 <input type="checkbox" id="toggle" name="toggle" onchange="document.getElementById('removeSchedule').style.display = this.checked ? 'block' : 'none'">
             @endif
 
-            <label for="toggle">Zobrazit stávající aktivity (odebrání z rozvrhu)</label>
+            <label for="toggle">Zobrazit stávající aktivity (umožňuje odebrání z rozvrhu)</label>
             <form action="{{ route('manage-schedules.remove') }}" method="POST" id="removeSchedule" style="display: none">
                 <h3>Odebrání aktivit z rozvrhu:</h3>
                 @if(session('successRemove'))
@@ -52,14 +52,14 @@
                             @foreach($schedules as $schedule)
                                 <tr>
                                     <td><input type="checkbox" id="schedules_id" name="schedules_id[]" value="{{ $schedule->id }}"><label for="schedules_id"></label></td>
-                                    <td>{{ $schedule->educationalActivity->subject->name }}</td>
-                                    <td>{{ $schedule->educationalActivity->type }}</td>
-                                    <td>{{ $schedule->instructor->name }}</td>
-                                    <td>{{ $schedule->room->name }}</td>
-                                    <td>{{ $schedule->day }}</td>
-                                    <td>{{ $schedule->start_time }}</td>
-                                    <td>{{ $schedule->end_time }}</td>
-                                    <td>{{ $schedule->educationalActivity->repetition }}</td>
+                                    <td style="padding: 5px">{{ $schedule->educationalActivity->subject->name }}</td>
+                                    <td style="padding: 5px">{{ $schedule->educationalActivity->type }}</td>
+                                    <td style="padding: 5px">{{ $schedule->instructor->name }}</td>
+                                    <td style="padding: 5px">{{ $schedule->room->name }}</td>
+                                    <td style="padding: 5px">{{ $schedule->day }}</td>
+                                    <td style="padding: 5px">{{ $schedule->start_time }}</td>
+                                    <td style="padding: 5px">{{ $schedule->end_time }}</td>
+                                    <td style="padding: 5px">{{ $schedule->educationalActivity->repetition }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -84,20 +84,32 @@
                         <thead>
                         <tr>
                             <th>Volba</th>
-                            <th>Název předmětu</th>
+                            <th>Předmět</th>
                             <th>Typ</th>
+                            <th>Vyučující</th>
                             <th>Délka</th>
                             <th>Opakování</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($activities as $activity)
+                            @php
+                                if($activity->teacher == null)
+                                {
+                                    $instructor_name = null;
+                                }
+                                else
+                                {
+                                    $instructor_name = $activity->teacher->name;
+                                }
+                            @endphp
                             <tr>
                                 <td><input type="radio" id="educational_activity_id" name="educational_activity_id" value="{{ $activity->id }}" onclick="document.getElementById('duration').value = {{ $activity->duration }}"><label for="educational_activity_id"></label></td>
-                                <td>{{ $activity->subject->name }}</td>
-                                <td>{{ $activity->type }}</td>
-                                <td>{{ $activity->duration }}</td>
-                                <td>{{ $activity->repetition }}</td>
+                                <td style="padding: 5px">{{ $activity->subject->name }}</td>
+                                <td style="padding: 5px">{{ $activity->type }}</td>
+                                <td style="padding: 5px">{{ $instructor_name }}</td>
+                                <td style="padding: 5px">{{ $activity->duration }}</td>
+                                <td style="padding: 5px">{{ $activity->repetition }}</td>
                             </tr>
                         @endforeach
                         </tbody>

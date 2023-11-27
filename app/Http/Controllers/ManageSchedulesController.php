@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\EducationalActivities;
 use App\Models\Rooms;
 use App\Models\ScheduleRequirement;
+use function PHPUnit\Framework\isNull;
 
 class ManageSchedulesController extends Controller
 {
@@ -54,8 +55,24 @@ class ManageSchedulesController extends Controller
             return redirect()->back()->with('failure', 'Chyba: zvolená místnost v tento čas není volná');
         }
 
+        $activity = EducationalActivities::where('id', $request->input('educational_activity_id'))->first();
+        if(isNull($activity->teacher))
+        {
+            $instructor_id = $request->input('instructor_id');
+        }
+        else
+        {
+            $instructor_id = $activity->teacher->id;
+        }
+
+        $teacher_ids = json_decode($activity->subject->teacher_ids, true);
+        if(!in_array($instructor_id, $teacher_ids))
+        {
+            return redirect()->back()->with('failure', 'Chyba: zvolený předmět neobsahuje zvoleného vyučujícího');
+        }
+
         // kontrola požadavků na rozvrh
-        $dayReq = ScheduleRequirement::where('instructor_id', $request->input('instructor_id'))->where('day', $day)->first();
+        $dayReq = ScheduleRequirement::where('instructor_id', $instructor_id)->where('day', $day)->first();
         if($dayReq)
         {
             if($start_time < $dayReq->start_time || $end_time > $dayReq->end_time)
@@ -68,13 +85,15 @@ class ManageSchedulesController extends Controller
             return redirect()->back()->with('failure', 'Chyba: zvolený vyučující v tento den není volný');
         }
 
+
+
         Schedules::updateOrCreate(
             [
                 'educational_activity_id' => $request->input('educational_activity_id'),
             ],
             [
                 'room_id' => $request->input('room_id'),
-                'instructor_id' => $request->input('instructor_id'),
+                'instructor_id' => $instructor_id,
                 'day' => $request->input('day'),
                 'start_time' => $start_time,
                 'end_time' => $end_time,
