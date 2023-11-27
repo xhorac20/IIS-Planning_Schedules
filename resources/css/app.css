@@ -819,7 +819,7 @@ ul li a:hover {
 background-color: #e3f2fd;
 }
 .scroll {
-width: 1000px;
+width: auto;
 overflow-x: auto;
 overflow-y: hidden;
 white-space: nowrap;
@@ -827,34 +827,6 @@ border-radius: 10px;
 border: 2px solid #8d0000;
 margin-top: 15px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /********************************** SCROLLBAR + SELECTION **************************/
 /*Width*/
