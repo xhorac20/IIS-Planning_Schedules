@@ -182,7 +182,7 @@ footer {
     color: white;
     background-color: #6c6c6c;
     text-decoration: none;
-    padding-left: 35px;
+    padding-left: 25px;
 }
 .sidebar li .administration {
     background-color: rgba(128, 12, 2, 0.85);
@@ -212,52 +212,6 @@ footer {
 }
 
 /***************************************** END SIDEBAR *************************/
-/* Styly pro zobrazení obsahu předmětů */
-ul {
-    padding: 0;
-    list-style-type: none;
-}
-
-ul li a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-ul li a:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.schedule-container {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #f8f9fa;
-}
-
-.schedule-container h2 {
-    color: #0056b3;
-    margin-bottom: 20px;
-}
-
-.schedule-table {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.schedule-table thead th {
-    background-color: #007bff;
-    color: white;
-}
-
-.schedule-table td {
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #dee2e6;
-}
-
-.schedule-slot {
-    background-color: #e3f2fd;
-}
 
 /******************* USER *****************************/
 /* Vytvaranie noveho uzivatela */
@@ -361,11 +315,16 @@ ul li a:hover {
     border-radius: 5px;
     padding: 5px 10px;
 }
+.alert-center {
+    position: absolute;
+    right: 40px;
+    top: 80px;
+}
 .create-button {
     width: 90px;
     background-color: #007bff;
     border: 2px solid #0056b3;
-    margin: 10px 10px;
+    margin: 0;
     transition: all 0.5s;
 }
 .create-button:hover{
@@ -402,7 +361,7 @@ ul li a:hover {
     background-color: rgba(62, 59, 59, 0.76);
 }
 .head form input:focus{
-    color: rgba(214, 96, 60, 0.96);
+    color: rgb(255, 230, 224);
     background-color: white;
     transition: all 0.5s;
     width: 100%;
@@ -600,14 +559,6 @@ ul li a:hover {
     width: 120px;
     transition: all 0.3s;
 }
-.activity{
-    background-color: #e6f0ff;
-    border: 2px solid #007bff;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-
 .event-title-manage form {
     margin-top: 10px;
 
@@ -658,8 +609,9 @@ ul li a:hover {
     width: 100px;
     transition: all 0.3s;
 }
-.head-menu-sub {
-
+.move-edit li:nth-of-type(5) {
+    position: relative !important;
+    left: 100px !important;
 }
 /* code */
 .head-menu-sub li:nth-of-type(1){
@@ -683,4 +635,221 @@ ul li a:hover {
 }
 .head-menu-sub form {
     margin: 3px 0;
+}
+/********************************* SUBJECT DETAIL ***************************/
+.subject-info {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    text-align: left;
+}
+.subject-info-name {
+    padding: 0 15px;
+    font-weight: 600;
+}
+.subject-info-value {
+    padding: 0 10px;
+}
+.show-annot {
+    font-weight: 600;
+}
+.show-annot-value {
+    color: #3e3e3e;
+    max-width: 100%;
+    min-height: 70px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/*********************************** SPRAVA VYUKOVYCH ACTIVT ************************/
+.create-activity-button {
+    width: 155px;
+}
+.create-activity-button:hover {
+    width: 155px;
+}
+
+/******************************************* ZOZNAM PREDMETOV **********************/
+.activities {
+    background-color: #d6603cf5;
+    margin: 5px 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.activities a {
+    padding: 10px;
+    color: white;
+    display: block;
+    width: 35%;
+}
+.activities a:hover {
+    text-decoration: none;
+}
+.activities p {
+    width: 50%;
+    margin: 0;
+    padding: 10px;
+    color: white;
+}
+.dots {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.activities form {
+    margin-top: 0;
+}
+.activities button {
+    margin: 5px;
+    padding: 10px 15px !important;
+    width: 150px;
+}
+.activities:hover {
+    background-color: #9f2906d9;
+    transition: all 0.5s;
+}
+.btn-send {
+    background-color: #0056b3 !important;
+    border: 1px solid #0056b3 !important;
+}
+.btn-send:hover {
+    color: #007bff;
+    background-color: white !important;
+    border: 1px solid #0056b3 !important;
+    transition: all 0.5s;
+}
+.btn-remove {
+    background-color: #8d0000 !important;
+    border: 1px solid #580000 !important;
+}
+.btn-remove:hover {
+    color: white !important;
+    background-color: #2f2f2f !important;
+    border: 1px solid white !important;
+    transition: all 0.5s;
+}
+
+/**************************************** MOJ ROZVRH ****************************/
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+ul li a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.schedule-container {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+.schedule-container h2 {
+    color: #0056b3;
+    margin-bottom: 20px;
+}
+.schedule-table {
+    width: 100%;
+    margin-bottom: 5px;
+}
+.schedule-table thead th {
+    background-color: rgba(159,41,6,.85);
+    color: white;
+}
+.schedule-table td {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #dee2e6;
+    /*min-width: 120px;*/
+    /*max-width: 120px;*/
+}
+.activity{
+    background-color: #147c00;
+    border: 2px solid #074b00;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    max-width: 150px;
+    box-shadow: inset 0 0 5px white;
+    margin: 5px 0;
+    z-index: 2;
+    /*left: 50%;*/
+}
+.minute-move {
+    background-color: #1a202c;
+    left: 0;
+}
+.minute-15 {
+    left: 25%;
+}
+.minute-30 {
+    left: 50%;
+}
+.minute-45 {
+    left: 75%;
+}
+.cvicenie {
+    background-color: #007bff;
+    border: 2px solid #007bff;
+    color: white;
+    box-shadow: inset 0 0 5px white;
+}
+.skuska {
+    background-color: #ad0000;
+    border: 2px solid #7a0000;
+    color: white;
+    box-shadow: inset 0 0 5px white;
+}
+.ine {
+    background-color: #dabc00;
+    border: 2px solid #c98c00;
+    color: white;
+    box-shadow: inset 0 0 5px white;
+}
+.schedule-slot {
+background-color: #e3f2fd;
+}
+.scroll {
+width: auto;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+border-radius: 10px;
+border: 2px solid #8d0000;
+margin-top: 15px;
+}
+
+/********************************** SCROLLBAR + SELECTION **************************/
+/*Width*/
+::-webkit-scrollbar {
+    width: 15px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+/*Handle*/
+::-webkit-scrollbar-thumb {
+    background: #606060;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px black;
+}
+/*Handle on hover*/
+::-webkit-scrollbar-thumb:hover {
+    background: #2f2f2f;
+    box-shadow: inset 0 0 5px #858585;
+}
+/*Zmena farby ked oznacujes text*/
+::selection {
+    color: white;
+    background: #8d0000;
 }

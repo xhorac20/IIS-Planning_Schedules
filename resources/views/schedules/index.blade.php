@@ -3,8 +3,15 @@
 @section('title', 'Seznam rozvrhů')
 
 @section('content')
-    <h1>Seznam rozvrhů</h1>
-
+    <div class="event-title-manage event-title">
+        <h1>Seznam rozvrhů</h1>
+        @if(session('success') || session('status'))
+            <div class="alert" id="Alert">
+                {{ session('success') }}
+                {{ session('status') }}
+            </div>
+        @endif
+    </div>
     <a href="{{ route('schedules.create') }}">Vytvořit nový rozvrh</a>
 
     <ul>

@@ -3,28 +3,6 @@
 @section('title', 'Detail Předmětu')
 
 @section('content')
-    <script>
-        $(document).ready(function () {
-            // Ked sa nacita stranka prida sa element
-            $('#Alert').fadeIn();
-
-            // Po 15 sekundach sa zavola funkcia na skrytie alertu
-            setTimeout(function () {
-                hideAlert();
-            }, 15000); // 15 sekund
-        });
-
-        function hideAlert() {
-            // Trieda s animaciou vystupu
-            $('#Alert').fadeOut();
-
-            // skončení animácie sa element odstrani
-            setTimeout(function () {
-                $('#Alert').remove();
-            }, 1000);
-        }
-    </script>
-
     <div class="d-flex">
         <!-- Sidebar -->
         <x-sidebar/>
@@ -38,26 +16,29 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <a href="{{ route('subjects.edit', $subject) }}" class="create-button btn-dark-blue">Edit</a>
-                <form class="delete-button create-button" action="{{ route('subjects.destroy', $subject->id) }}"
-                      method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="create-button" type="submit"
-                            onclick="return confirm('Are you sure you want to delete this {{ $subject->name }} ?')">Delete
-                    </button>
-                </form>
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('subjects.edit', $subject) }}" class="create-button btn-dark-blue">Edit</a>
+                    <form class="delete-button create-button" action="{{ route('subjects.destroy', $subject->id) }}"
+                          method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="create-button" type="submit"
+                                onclick="return confirm('Are you sure you want to delete this {{ $subject->name }} ?')">
+                            Delete
+                        </button>
+                    </form>
+                @endif
             </div>
             <div class="card">
                 <h2>{{ $subject['name'] }}</h2>
                 <hr>
-                <div class="room-info">
-                    <div class="room-info-name">
-                        <p>Code</p>
-                        <p>Credits</p>
-                        <p>Guarantor</p>
+                <div class="subject-info">
+                    <div class="subject-info-name">
+                        <p>Code:</p>
+                        <p>Credits:</p>
+                        <p>Guarantor:</p>
                     </div>
-                    <div class="room-info-value">
+                    <div class="subject-info-value">
                         <p>{{ $subject['code'] }}</p>
                         <p>{{ $subject['credits'] }}</p>
                         <p>{{ $subject['guarantor_id'] }}</p>
@@ -68,10 +49,8 @@
             <div class="card">
                 <h3>Other information about the subject</h3>
                 <hr>
-                <p>Annotation</p>
-                <p>{{ $subject['annotation'] }}</p>
-                <p>More information HERE</p>
-                {{--Další detaily uživatele --}}
+                <p class="show-annot">Annotation</p>
+                <p class="show-annot-value">{{ $subject['annotation'] }}</p>
             </div>
         </div>
     </div>

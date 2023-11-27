@@ -7,6 +7,30 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>@yield('title', 'Default Title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+{{--    Script pre Alert--}}
+    <script>
+        // Animacia Alertu zmizne po 10 sekundach
+        $(document).ready(function () {
+            // Ked sa nacita stranka prida sa element
+            $('#Alert').fadeIn();
+
+            // Po 10 sekundach sa zavola funkcia na skrytie alertu
+            setTimeout(function () {
+                hideAlert();
+            }, 10000); // 15 sekund
+        });
+
+        function hideAlert() {
+            // Trieda s animaciou vystupu
+            $('#Alert').fadeOut();
+
+            // skončení animácie sa element odstrani
+            setTimeout(function () {
+                $('#Alert').remove();
+            }, 1000);
+        }
+    </script>
 </head>
 <body>
 <header>

@@ -9,7 +9,16 @@
 
         <!-- Hlavní obsah -->
         <div class="flex-grow-1">
-            <h2 class="text-center">Správa výukových aktivít</h2>
+            <div class="event-title-manage event-title">
+                <h1>Správa výukových aktivít</h1>
+                @if(session('success') || session('status'))
+                    <div class="alert" id="Alert">
+                        {{ session('success') }}
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <a href="{{ route('educational-activities.create') }}" class="create-button create-activity-button btn-success btn-dark-blue">Pridať novú aktivitu</a>
+            </div>
 
             @foreach ($subjects as $subject)
                 <div class="card my-3">
@@ -81,7 +90,6 @@
                     </div>
                 </div>
             @endforeach
-            <a href="{{ route('educational-activities.create') }}" class="btn btn-success">Pridať novú aktivitu</a>
         </div>
     </div>
 @endsection

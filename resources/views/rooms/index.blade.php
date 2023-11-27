@@ -17,27 +17,6 @@
                 // zobrazi najdenych userov
             }
         });
-
-        // Animacia Alertu zmizne po 10 sekundach
-        $(document).ready(function () {
-            // Ked sa nacita stranka prida sa element
-            $('#Alert').fadeIn();
-
-            // Po 10 sekundach sa zavola funkcia na skrytie alertu
-            setTimeout(function () {
-                hideAlert();
-            }, 10000); // 15 sekund
-        });
-
-        function hideAlert() {
-            // Trieda s animaciou vystupu
-            $('#Alert').fadeOut();
-
-            // skončení animácie sa element odstrani
-            setTimeout(function () {
-                $('#Alert').remove();
-            }, 1000);
-        }
     </script>
     <div class="d-flex">
         <!-- Sidebar -->

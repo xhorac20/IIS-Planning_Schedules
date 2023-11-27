@@ -3,28 +3,6 @@
 @section('title', 'Vytvořit nový předmět')
 
 @section('content')
-    <script>
-        $(document).ready(function () {
-            // Ked sa nacita stranka prida sa element
-            $('#Alert').fadeIn();
-
-            // Po 15 sekundach sa zavola funkcia na skrytie alertu
-            setTimeout(function () {
-                hideAlert();
-            }, 15000); // 15 sekund
-        });
-
-        function hideAlert() {
-            // Trieda s animaciou vystupu
-            $('#Alert').fadeOut();
-
-            // skončení animácie sa element odstrani
-            setTimeout(function () {
-                $('#Alert').remove();
-            }, 1000);
-        }
-    </script>
-
     <div class="d-flex">
         <!-- Sidebar -->
         <x-sidebar/>

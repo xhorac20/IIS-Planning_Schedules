@@ -9,7 +9,15 @@
 
         <!-- Hlavný obsah -->
         <div class="flex-grow-1">
-            <h1>Vytvorenie Nového Rozvrhu</h1>
+            <div class="event-title-manage event-title">
+                <h1>Vytvorenie Nového Rozvrhu</h1>
+                @if(session('success') || session('status'))
+                    <div class="alert" id="Alert">
+                        {{ session('success') }}
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
             <form method="POST" action="{{ route('schedules.store') }}">
                 @csrf
 
