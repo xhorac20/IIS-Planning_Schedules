@@ -14,8 +14,14 @@ class TeacherController extends Controller
      */
     public function schedule()
     {
-        $schedules = Schedules::where('teacher_id', auth()->id())->get(); // Získá rozvrh přihlášeného učitele
+        $schedules = Schedules::where('id', auth()->id())->get(); // Získá rozvrh přihlášeného učitele
         return view('teacher.schedule', compact('schedules'));
+    }
+
+    public function scheduleRequirements()
+    {
+        // TODO check if teacher has any assigned subjects
+        return view('teacher.schedule-requirements');
     }
 
     // Další metody specifické pro vyučujícího (např. správa výukových materiálů, sledování postupu studentů, atd.)

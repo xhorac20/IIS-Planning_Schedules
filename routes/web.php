@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuarantorController;
+use App\Http\Controllers\ManageSchedulesController;
 use App\Http\Controllers\SchedulerController;
+use App\Http\Controllers\ScheduleRequirementController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -85,11 +87,17 @@ Route::middleware(['auth'])->group(function () {
     // Teacher routy
     Route::middleware(['isTeacher'])->group(function () {
         Route::get('/teacher/schedule', [TeacherController::class, 'schedule'])->name('teacher.schedule')->middleware('isTeacher');
+        Route::get('/teacher/schedule-requirements', [ScheduleRequirementController::class, 'requirements'])->name('teacher.schedule-requirements')->middleware('isTeacher');
+        Route::post('/teacher/schedule-requirements/edit', [ScheduleRequirementController::class, 'edit'])->name('schedule-requirements.edit')->middleware('isTeacher');
     });
 
     // Scheduler routy
     Route::middleware(['isScheduler'])->group(function () {
         Route::get('/scheduler/panel', [SchedulerController::class, 'index'])->name('scheduler.panel')->middleware('isScheduler');
+        // TODO move to panel?
+        Route::get('/scheduler/manage-schedules', [ManageSchedulesController::class, 'indexForScheduler'])->name('scheduler.manage-schedules')->middleware('isScheduler');
+        Route::post('/scheduler/manage-schedules/edit', [ManageSchedulesController::class, 'edit'])->name('manage-schedules.edit')->middleware('isScheduler');
+        Route::post('/scheduler/manage-schedules/remove', [ManageSchedulesController::class, 'remove'])->name('manage-schedules.remove')->middleware('isScheduler');
     });
 
     // Student routy
