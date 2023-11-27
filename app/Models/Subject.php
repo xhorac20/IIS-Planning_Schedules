@@ -23,11 +23,6 @@ use Illuminate\Support\Facades\DB;
 class Subject extends Model
 {
     use HasFactory;
-    public mixed $code;
-    public mixed $name;
-    public mixed $annotation;
-    public mixed $credits;
-    public mixed $guarantor_id;
 
     protected $fillable = [
         'code',

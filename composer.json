@@ -1,8 +1,8 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Planning_Schedules",
+    "keywords": ["IIS", "Projekt"],
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -10,7 +10,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "laravel/ui": "^4.2"
+        "laravel/ui": "^4.2",
+        "nesbot/carbon": "^2.71"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

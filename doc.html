@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-2"/>
+    <title>Projekt IIS</title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid black;
+            padding: 0.3em 0.5em;
+            text-align: left;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 0.5em;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu
+     podle použitého editoru -->
+
+<h1>Název zadání (IIS - Informační systémy)</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+    <dt>Autoři</dt>
+    <dd>Andrej Horáček <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+        <a href="mailto:xhorac20@stud.fit.vutbr.cz">xhorac20@stud.fit.vutbr.cz</a> -
+        Veduci timu, Tvorba Dokumentacie, Tvorba Databazy, Implementacia Prihlasovania, Registracie, Roly Hosta,
+        Uzivatela, Studenta a
+        Garanta
+    </dd>
+    <dd>Jakub Brčiak <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+        <a href="mailto:xbrcia00@stud.fit.vutbr.cz">xbrcia00@stud.fit.vutbr.cz</a> -
+        Implementacia Role Admina, Uprava Databazy a Vizualu, Celkova korektura a doladenie vizualu
+    </dd>
+    <dd>Matěj Nová <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+        <a href="mailto:xnovak2v@stud.fit.vutbr.cz">xnovak2v@stud.fit.vutbr.cz</a> -
+        Implementacia Roly Vyucujuceho a Rozvrhara, Uprava Databazy a Vizualu
+    </dd>
+    <dd>
+        - Kazdy clen timu implementoval Model View a Controller pre svoju cast zadania.
+        Na Analyze, Navrhu a Testovani sa taktiez podielal kazdy clen
+    </dd>
+
+    <dt>URL aplikace</dt>
+    <dd><a href="http://www.stud.fit.vutbr.cz/~xhorac20/IIS">http://www.stud.fit.vutbr.cz/~xhorac20/IIS</a></dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Heslo</th>
+        <th>Role</th>
+    </tr>
+    <tr>
+        <td>dio@brando.com</td>
+        <td>heslo123</td>
+        <td>Admin (Administrator)</td>
+    </tr>
+    <tr>
+        <td>goku@kakarot.com</td>
+        <td>heslo123</td>
+        <td>Guarantor (Garant Predmetu)</td>
+    </tr>
+    <tr>
+        <td>monkey@luffy.com</td>
+        <td>heslo123</td>
+        <td>Teacher (Vyucujuci)</td>
+    </tr>
+    <tr>
+        <td>zoro@roronoa.com</td>
+        <td>heslo123</td>
+        <td>Scheduler (Rozvrhar)</td>
+    </tr>
+    <tr>
+        <td>sanji@vinsmoke.com</td>
+        <td>heslo123</td>
+        <td>Student (Student)</td>
+    </tr>
+    <tr>
+        <td>freddy@fazbear.com</td>
+        <td>heslo123</td>
+        <td>User (Registrovany uzivatel)</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>Guest (Neregistrovany uzivatel)</td>
+    </tr>
+</table>
+
+<h3>Video</h3>
+
+<p>Přiložte odkaz na komentované video demostrující použití informačního systému. Zaměřte se na případy užití definované
+    zadáním (např. registrace uživatele, správa uživatelů a činnosti jednotlivých rolí). Video nahrajte například na VUT
+    Google Drive, kde ho bude možné přímo spustit z odkazu.</p>
+
+<<h2>Implementácia</h2>
+<p>Projekt "Planning Schedules" je implementovaný s použitím PHP frameworku Laravel a skladá sa z niekoľkých kľúčových
+    častí, ktoré implementujú rôzne prípady použitia:</p>
+
+<ul>
+    <li>
+        <strong>Autentizácia a autorizácia:</strong>
+        <p>Zaklady implementované pomocou Laravel Breeze a nasledne upravene podla potreby. Súbory pre správu užívateľov sa nachádzajú v priečinku <code>routes/auth.php</code>
+            a v kontroléroch v <code>app/Http/Controllers/Auth</code>.</p>
+    </li>
+    <li>
+        <strong>Užívateľské role:</strong>
+        <p>Využíva sa Laravel model <code>User</code> v <code>app/Models/User.php</code> s definovanými metódami pre
+            overenie role užívateľa (isAdmin, isTeacher, atď.).</p>
+    </li>
+    <li>
+        <strong>Správa používateľov:</strong>
+        <p>Admin má možnosť spravovať používateľov cez <code>AdminController</code> v <code>app/Http/Controllers/AdminController.php</code>.
+        </p>
+    </li>
+    <li>
+        <strong>Správa predmetov:</strong>
+        <p>Garant predmetu môže spravovať predmety cez <code>SubjectController</code> v <code>app/Http/Controllers/SubjectController.php</code>.
+        </p>
+    </li>
+    <li>
+        <strong>Správa výukových aktivít:</strong>
+        <p>Garant predmetu spravuje výukové aktivity cez <code>EducationalActivitiesController</code> v <code>app/Http/Controllers/EducationalActivitiesController.php</code>.
+        </p>
+    </li>
+    <li>
+        <strong>Správa rozvrhov:</strong>
+        <p>Rozvrhy sú spravované pomocou <code>SchedulesController</code> v <code>app/Http/Controllers/SchedulesController.php</code>.
+        </p>
+    </li>
+    <li>
+        <strong>Študentský rozvrh:</strong>
+        <p>Študenti prezerajú a upravujú svoj rozvrh cez <code>StudentScheduleController</code> v <code>app/Http/Controllers/StudentScheduleController.php</code>.
+        </p>
+    </li>
+    <li>
+        <strong>Vytváranie a správa miestností:</strong>
+        <p>Admin môže spravovať miestnosti cez <code>RoomsController</code> v <code>app/Http/Controllers/RoomsController.php</code>.
+        </p>
+    </li>
+</ul>
+
+<h3>Databáze</h3>
+<p>Grafické schéma relační databáze:</p>
+<img src="Databaza.png" alt="Grafické schéma databázy">
+
+<h2>Instalace</h2>
+
+<ul>
+    <li>Postup inštalácie na server:</li>
+    <ol>
+        <li>Stiahnite projekt zo zdrojového repozitára (napr. GitHub) do cieľového adresára na serveri.</li>
+        <li>Inštalujte Composer, pokiaľ ešte nie je nainštalovaný.</li>
+        <li>Otvorte terminál a prejdite do koreňového adresára projektu.</li>
+        <li>Spustite príkaz `composer install` pre inštaláciu závislostí.</li>
+        <li>V súbore `.env` upravte konfiguráciu databázy a ďalšie potrebné nastavenia.</li>
+        <li>Spustite príkaz `php artisan key:generate` pre generáciu aplikácie kľúča.</li>
+        <li>Spustite príkazy pre migráciu databázy `php artisan migrate`
+            a `php artisan db:seed` pre inicializáciu databázy (`php artisan serve` lokalne spustenie).
+        </li>
+    </ol>
+    <li>Softvérové požiadavky:</li>
+    <ul>
+        <li>PHP verzia 8.1 alebo vyššia (pouzita: 8.2.12).</li>
+        <li>Laravel Framework verzia 10.10 alebo vyššia (pouzita: 10.32.1).</li>
+        <li>Databázový systém podporovaný Laravel (napr. MySQL, PostgreSQL).</li>
+        <li>Web server (napr. Apache, Nginx).</li>
+        <li>Composer pre správu PHP závislostí.</li>
+    </ul>
+    <li>Ako rozbaliť, konfigurovať, inicializovať databázu:</li>
+    <ol>
+        <li>Rozbaľte stiahnutý projekt na serveri.</li>
+        <li>Upravte `.env` súbor s potrebnými konfiguračnými údajmi, najmä databázové pripojenie a prístupové údaje.
+        </li>
+        <li>Spustite migráciu databázy pomocou `php artisan migrate` pre vytvorenie databázových tabuliek.</li>
+        <li>Použite `php artisan db:seed` pre naplnenie databázy počiatočnými dátami.</li>
+    </ol>
+</ul>
+
+<h2>Známé problémy</h2>
+
+
+</body>
+</html>
