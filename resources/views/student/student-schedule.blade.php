@@ -1,55 +1,46 @@
 @extends('layouts.app')
 
-@section('title', 'Moj Rozvrh')
+@section('title', 'Môj Rozvrh')
 
 @section('content')
     <div class="d-flex">
         <!-- Sidebar -->
         <x-sidebar/>
 
-        <!-- Hlavny obsah -->
+        <!-- Hlavný obsah -->
         <div class="schedule-container">
             <h2>Môj Rozvrh</h2>
             <table class="table table-bordered schedule-table">
                 <thead>
                 <tr>
-                    <th>Dny / Čas</th>
-                    @for ($i = 7; $i <= 20; $i++)
-                        <th>{{ $i }}:00</th>
-                    @endfor
+                    <th>Hodina / Deň</th>
+                    @foreach (['Po', 'Ut', 'St', 'Št', 'Pi'] as $day)
+                        <th>{{ $day }}</th>
+                    @endforeach
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (['Po', 'Ut', 'St', 'Št', 'Pi'] as $day)
+                @for ($hour = 7; $hour <= 20; $hour++)
                     <tr>
-                        <td>{{ $day }}</td>
-                        @for ($i = 7; $i <= 20;)
-                            @php
-                                $isScheduled = false;
-                                $colspan = 1;
-                                $subjectDetail = '';
-                            @endphp
-                            @if (!empty($scheduleData[$day]) && !empty($scheduleData[$day][$i]))
-                                @php
-                                    $isScheduled = true;
-                                    $subjectDetail = $scheduleData[$day][$i]['subject'] . ' (' . $scheduleData[$day][$i]['type'] . ') ' . $scheduleData[$day][$i]['room'];
-                                    $duration = $scheduleData[$day][$i]['duration'];
-                                    $colspan = ceil($duration / 60);
-                                    $i += $colspan; // Skip slots covered by colspan
-                                @endphp
-                                <td class="schedule-slot" colspan="{{ $colspan }}">
-                                    {{ $subjectDetail }}
-                                    Trvanie: {{ $duration }} min
-                                </td>
-                            @endif
-                            @if (!$isScheduled)
-                                <td class="schedule-slot"></td>
-                                @php $i++; @endphp
-                            @endif
-                        @endfor
+                        <td>{{ $hour }}:00</td>
+                        @foreach (['Po', 'Ut', 'St', 'Št', 'Pi'] as $day)
+                            <td class="schedule-slot">
+                                @if (!empty($scheduleData[$day][$hour]))
+                                    @foreach ($scheduleData[$day][$hour] as $activity)
+                                        <div class="activity">
+                                            <div>{{ $activity['subject'] }} ({{ $activity['type'] }})</div>
+                                            <div>{{ $activity['room'] }}</div>
+                                            <div>{{ $activity['repetition'] }}</div>
+                                            @if ($activity['event_date'])
+                                                <div>{{ $activity['event_date'] }}</div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </td>
+                        @endforeach
                     </tr>
-                @endforeach
-
+                @endfor
                 </tbody>
             </table>
         </div>

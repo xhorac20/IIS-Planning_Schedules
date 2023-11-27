@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Prechádzanie Predmetov')
+@section('title', 'Vytvoriť rozvrh výučbovej aktivite')
 
 @section('content')
     <div class="d-flex">
