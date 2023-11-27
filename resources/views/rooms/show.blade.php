@@ -39,6 +39,14 @@
                     </div>
                 @endif
                 <a href="{{ route('rooms.edit', $room) }}" class="create-button btn-dark-blue">Edit</a>
+                <form class="delete-button create-button" action="{{ route('rooms.destroy', $room->id) }}"
+                      method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="create-button" type="submit"
+                            onclick="return confirm('Are you sure you want to delete this {{ $room->name }} ?')">Delete
+                    </button>
+                </form>
             </div>
             <div class="detail-content">
                 <div class="card">

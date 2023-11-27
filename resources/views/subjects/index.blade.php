@@ -52,7 +52,8 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <a href="{{ route('subjects.create') }}" class="create-button create-sub-button btn-dark-blue">Add Subject</a>
+                <a href="{{ route('subjects.create') }}" class="create-button create-sub-button btn-dark-blue">Add
+                    Subject</a>
             </div>
             <div class="manage-content">
                 <ul>
@@ -62,11 +63,13 @@
                             <li>Name</li>
                             <li>Credits</li>
                             <li>Guarantor</li>
-                            <form>
-                                <label for="search"></label>
-                                <input type="text" id="search" name="search" placeholder="Search for subjects"
-                                       value="{{ session()->get('search') ?? request()->get('search') }}">
-                            </form>
+                            <li>
+                                <form>
+                                    <label for="search"></label>
+                                    <input type="text" id="search" name="search" placeholder="Search Subject"
+                                           value="{{ session()->get('search') ?? request()->get('search') }}">
+                                </form>
+                            </li>
                         </ul>
                     </li>
                     <hr class="splitter">
@@ -77,7 +80,18 @@
                                 <li>{{ $subject['name'] }}</li>
                                 <li>{{ $subject['credits'] }}</li>
                                 <li>{{ $users->find($subject['guarantor_id'])->name }}</li>
-                                <li><a href="{{ route('subjects.edit', $subject->id) }}">Edit</a></li>
+                                <li style="display: flex; flex-direction: row">
+                                    <a href="{{ route('subjects.edit', $subject->id) }}">Edit</a>
+                                    <form class="delete-all" action="{{ route('subjects.destroy', $subject->id) }}"
+                                          method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                onclick="return confirm('Are you sure you want to delete this {{ $subject->name }} ?')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                         <hr class="splitter">

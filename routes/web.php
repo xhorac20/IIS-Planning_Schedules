@@ -39,6 +39,7 @@ Route::get('/users/create', [UserController::class, 'create'])->name('users.crea
 Route::post('/users/create', [UserController::class, 'store'])->name('users.save');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::patch('/users/{user}', [UserController::class, 'update']);
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 // Cesty pre Room Management
 Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms.index');
@@ -46,13 +47,15 @@ Route::get('/rooms/create', [RoomsController::class, 'create'])->name('rooms.cre
 Route::post('/rooms/create', [RoomsController::class, 'store'])->name('rooms.save');
 Route::get('/rooms/{room}/edit', [RoomsController::class, 'edit'])->name('rooms.edit');
 Route::patch('/rooms/{room}', [RoomsController::class, 'update']);
+Route::delete('/rooms/{room}', [RoomsController::class, 'destroy'])->name('rooms.destroy');
 
 // Cesty pre Subjects Management
 Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects.index');
 Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
 Route::post('/subjects/create', [SubjectController::class, 'store'])->name('subjects.save');
-Route::get('/subjects/{room}/edit', [SubjectController::class, 'edit'])->name('subjects.edite');
-Route::patch('/subjects/{room}', [SubjectController::class, 'update']);
+Route::get('/subjects/{subject}/edit', [SubjectController::class, 'edit'])->name('subjects.edite');
+Route::patch('/subjects/{subject}', [SubjectController::class, 'update']);
+Route::delete('/subjects/{subject}', [UserController::class, 'destroy'])->name('subjects.destroy');
 
 // Dashboard - chráněný middlewarem
 Route::get('/dashboard', function () {

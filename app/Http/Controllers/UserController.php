@@ -70,6 +70,13 @@ class UserController extends Controller
 
         return redirect()->route('users.index', ['user' => $user->id])->with('status', 'User "' . $user->name . '" Updated!');
     }
+    public function destroy($id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User "' . $user->name . '" was deleted!');
+    }
 
     public function show($userId): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
