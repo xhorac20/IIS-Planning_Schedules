@@ -21,14 +21,14 @@
             </div>
 
             @foreach ($subjects as $subject)
-                <div class="card my-3">
+                <div class="card active-card">
                     <div class="card-header">
-                        {{ $subject->name }} ({{ $subject->code }})
+                        <h2>{{ $subject->name }} ({{ $subject->code }})</h2>
                     </div>
                     <div class="card-body">
 
                         {{-- Ucitelia --}}
-                        <h5>Učitelia:</h5>
+                        <h4>Učitelia:</h4>
                         <ul>
                             {{-- Odstránenie učiteľa --}}
                             @foreach ($assignedTeachers[$subject->id] as $teacher)
@@ -58,7 +58,7 @@
                         </form>
 
                         <h5>Výukové aktivity:</h5>
-                        <ul>
+                        <ul class="vyuka">
                             @foreach ($activities[$subject->id] as $activity)
                                 <li>{{ $activity->type }} - trvanie: {{ $activity->duration }} minút
                                     @if($activity->teacher)

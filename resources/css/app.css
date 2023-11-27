@@ -669,6 +669,28 @@ footer {
 .create-activity-button:hover {
     width: 155px;
 }
+.card-header {
+    background-color: white;
+    color: #3b3b3b;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.active-card {
+    width: 100%;
+    min-width: 1000px;
+}
+.card-body h4 {
+    margin-bottom: 5px;
+}
+.card-body ul button {
+    padding: 10px;
+}
+.vyuka li {
+    margin: 10px 0;
+    text-align: left;
+    padding: 10px;
+    /*background-color: #1a202c;*/
+}
 
 /******************************************* ZOZNAM PREDMETOV **********************/
 .activities {
