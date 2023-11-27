@@ -14,7 +14,7 @@ class TeacherController extends Controller
      */
     public function schedule()
     {
-        $schedules = Schedules::where('teacher_id', auth()->id())->get(); // Získá rozvrh přihlášeného učitele
+        $schedules = Schedules::where('instructor_id', auth()->id())->get(); // Získá rozvrh přihlášeného učitele
         return view('teacher.schedule', compact('schedules'));
     }
 
