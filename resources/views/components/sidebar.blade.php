@@ -81,7 +81,12 @@
             @endif
 
             <!-- Vyučujúci -->
-            @if(Auth::user()->isTeacher() || Auth::user()->isGuarantor())
+            @if(Auth::user()->isTeacher() || Auth::user()->isGuarantor() || Auth::user()->isScheduler() || Auth::user()->isAdmin())
+                <li><a href="{{ route('teacher.schedule') }}">Môj rozvrh výuky</a></li>
+                <!-- Další odkazy pro vyučujícího -->
+            @endif
+
+            @if(Auth::user()->isTeacher() || Auth::user()->isGuarantor() || Auth::user()->isScheduler() || Auth::user()->isAdmin())
                 <li><a href="{{ route('teacher.schedule-requirements') }}">Požadavky na rozvrh</a></li>
                 <!-- Další odkazy pro vyučujícího -->
             @endif
