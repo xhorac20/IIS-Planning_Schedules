@@ -10,14 +10,12 @@ class ScheduleRequirementController extends Controller
 {
     public function requirements()
     {
-        // TODO check if teacher has any assigned subjects
         $user = Auth::user();
         $scheduleRequirements = $user->scheduleRequirements()->get()->keyBy('day');
         return view('teacher.schedule-requirements', compact('scheduleRequirements'));
     }
     public function edit(Request $request)
     {
-        //ddd($request);
         $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
         $user = Auth::user();
 

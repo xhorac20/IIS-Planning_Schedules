@@ -75,24 +75,42 @@
                     </table><br>
                 </div>
                 <div>
+                    @php
+                        $reqs = [];
+                        foreach($requirements as $requirement)
+                        {
+                            $reqs[$requirement->instructor->id]['name'] = $requirement->instructor->name;
+                            $reqs[$requirement->instructor->id]['req'][$requirement->day] = $requirement;
+                        }
+                    @endphp
                     <table style="border: 1px solid black">
                         <h4>Výběr vyučujícího:</h4>
                         <thead>
                         <tr>
                             <th>Volba</th>
                             <th>Vyučující</th>
-                            <th>Den</th>
-                            <th>Od - do</th>
+                            <th>Pondělí</th>
+                            <th>Úterý</th>
+                            <th>Středa</th>
+                            <th>Čtvrtek</th>
+                            <th>Pátek</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($requirements as $requirement)
+                        @foreach($reqs as $id => $data)
                             <tr>
-                                <td><input type="radio" id="instructor_id" name="instructor_id" value="{{ $requirement->instructor->id }}"><label for="instructor_id"></label></td>
-                                <td>{{ $requirement->instructor->name }}</td>
-                                <td>{{ $localized[$requirement->day] }}</td>
-                                <td>{{ date('H:i', strtotime($requirement->start_time)) }} - {{ date('H:i', strtotime($requirement->end_time)) }}</td>
-
+                                <td><input type="radio" id="instructor_id" name="instructor_id" value="{{ $id }}"><label for="instructor_id"></label></td>
+                                <td>{{ $data['name'] }}</td>
+                                @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] as $day)
+                                    <td style="padding: 5px">
+                                        @if(isset($data['req'][$day]))
+                                            @php
+                                                $req = $data['req'][$day];
+                                            @endphp
+                                            {{ date('H:i', strtotime($req->start_time)) }} - {{ date('H:i', strtotime($req->end_time)) }}
+                                        @endif
+                                    </td>
+                                @endforeach
                             </tr>
                         @endforeach
                         </tbody>

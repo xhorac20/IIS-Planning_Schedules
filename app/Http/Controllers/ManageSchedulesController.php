@@ -9,7 +9,6 @@ use App\Models\EducationalActivities;
 use App\Models\Rooms;
 use App\Models\ScheduleRequirement;
 
-// TODO check conflicts
 class ManageSchedulesController extends Controller
 {
     public function indexForScheduler()
@@ -26,9 +25,6 @@ class ManageSchedulesController extends Controller
 
     public function edit(Request $request)
     {
-        $start_time = $request->input('start_time');
-        $end_time = Carbon::createFromFormat('H:i', $request->input('start_time'));
-        $end_time->addMinutes($request->input('duration'));
         $localized = [
             'Po' => 'monday',
             'Ut' => 'tuesday',
@@ -36,31 +32,41 @@ class ManageSchedulesController extends Controller
             'Št' => 'thursday',
             'Pi' => 'friday'
         ];
+        $day = $localized[$request->input('day')];
+
+        $start = Carbon::createFromFormat('H:i', $request->input('start_time'));
+        $end = Carbon::createFromFormat('H:i', $request->input('start_time'));
+        $end->addMinutes($request->input('duration'));
+        $start_time = $start->format('H:i:s');
+        $end_time = $end->format('H:i:s');
 
         // kontrola kolize místností
-        $roomOk = Schedules::where('room_id', $request->input('room_id'))
+        $roomEmpty = Schedules::where('room_id', $request->input('room_id'))
                         ->where('day', $request->input('day'))
                         ->where(function ($query) use ($start_time, $end_time){
-                            $query->whereBetween('start_time', [$start_time, $end_time->format('H:i')])
-                                ->orWhereBetween('end_time', [$start_time, $end_time->format('H:i')]);
+                            $query->whereBetween('start_time', [$start_time, $end_time])
+                                ->orWhereBetween('end_time', [$start_time, $end_time]);
                         })->doesntExist();
-        if(!$roomOk)
+        if(!$roomEmpty)
         {
             return redirect()->back()->with('failure', 'Chyba: zvolená místnost v tento čas není volná');
         }
 
         // kontrola požadavků na rozvrh
-        $instructorOk = ScheduleRequirement::where('instructor_id', $request->input('instructor_id'))
-                            ->where('day', $localized[$request->input('day')])
-                            ->where(function ($query) use ($start_time, $end_time){
-                                $query->where('start_time', '>', $end_time->format('H:i'))
-                                    ->orWhere('end_time', '<', $start_time);
-                            })->exists();
-
-        if(!$instructorOk)
+        $dayReq = ScheduleRequirement::where('instructor_id', $request->input('instructor_id'))->where('day', $day)->first();
+        if($dayReq)
         {
-            return redirect()->back()->with('failure', 'Chyba: zvolený vyučující v tento čas není volný');
+            if($start_time < $dayReq->start_time || $end_time > $dayReq->end_time)
+            {
+                return redirect()->back()->with('failure', 'Chyba: zvolený vyučující v tento čas není volný');
+            }
         }
+        else
+        {
+            return redirect()->back()->with('failure', 'Chyba: zvolený vyučující v tento den není volný');
+        }
+
+
 
         Schedules::updateOrCreate(
             [
@@ -70,8 +76,8 @@ class ManageSchedulesController extends Controller
                 'room_id' => $request->input('room_id'),
                 'instructor_id' => $request->input('instructor_id'),
                 'day' => $request->input('day'),
-                'start_time' => $request->input('start_time'),
-                'end_time' => $end_time->format('H:i'),
+                'start_time' => $start_time,
+                'end_time' => $end_time,
             ]
         );
 
