@@ -2,9 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $code
+ * @property string $name
+ * @property string|null $annotation
+ * @property int $credits
+ * @property int $guarantor_id
+ * @property array|null $teacher_ids
+ * @property User $guarantor
+ * @property Collection|EducationalActivities[] $educationalActivities
+ * @property Collection|User[] $teachers
+ */
 class Subject extends Model
 {
     use HasFactory;
@@ -36,7 +49,7 @@ class Subject extends Model
      *
      * @param int $teacherId
      */
-    public function removeTeacher($teacherId): void
+    public function removeTeacher(int $teacherId): void
     {
         $teacherIds = $this->teacher_ids ?? [];
 
@@ -45,6 +58,13 @@ class Subject extends Model
             $this->teacher_ids = $teacherIds;
             $this->save();
         }
+        // Odstránenie učiteľa z výukových aktivít
+        $this->removeTeacherFromActivities($teacherId);
+    }
+
+    protected function removeTeacherFromActivities($teacherId): void
+    {
+        $this->educationalActivities()->where('teacher_id', $teacherId)->update(['teacher_id' => null]);
     }
 
     public function guarantor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
