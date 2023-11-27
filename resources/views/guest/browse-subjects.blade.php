@@ -9,15 +9,21 @@
 
         <!-- Hlavní obsah - Zoznam predmetov -->
         <div class="flex-grow-1">
-            <div class="event-title">
-                <h2 class="text-center">Zoznam Predmetov</h2>
+            <div class="event-title event-title-manage">
+                <h1>Zoznam Predmetov</h1>
+                @if(session('success') || session('status'))
+                    <div class="alert-center alert" id="Alert">
+                        {{ session('success') }}
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
 
             <ul>
                 @foreach ($subjects as $subject)
-                    <li>
+                    <li class="activities" onclick="location.href = '{{ route('subjects.show', $subject->id) }}'">
                         <a href="{{ route('subjects.show', $subject) }}">{{ $subject->name }}</a>
-                        - {{ $subject->description }}
+                        <p class="dots">{{ $subject->description }}</p>
                         @auth
                             @if (auth()->user()->isStudent() || Auth::user()->isAdmin())
                                 @if (!\App\Models\StudentSchedule::isAddedToStudentSchedule($subject->id))

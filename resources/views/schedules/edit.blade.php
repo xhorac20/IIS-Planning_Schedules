@@ -9,8 +9,17 @@
 
         <!-- Hlavní obsah -->
         <div class="flex-grow-1">
-            <h1 class="text-center">Upravit Rozvrh Pre: {{ $schedule->educationalActivity->subject->name }}
-                - {{ $schedule->educationalActivity->type }}</h1>
+            <div class="event-title-manage event-title">
+                <h1>Upravit Rozvrh Pre: {{ $schedule->educationalActivity->subject->name }}
+                    - {{ $schedule->educationalActivity->type }}</h1>
+                @if(session('success') || session('status'))
+                    <div class="alert" id="Alert">
+                        {{ session('success') }}
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
+            >
 
             <form method="POST" action="{{ route('schedules.update', $schedule->id) }}">
                 @csrf
