@@ -18,13 +18,19 @@ class GuarantorController extends Controller
      */
     public function manageActivities()
     {
-        $guarantorId = auth()->id(); // Získanie ID aktuálne prihláseného užívateľa
-        $subjects = Subject::where('guarantor_id', $guarantorId)->get();
+        // Získajte ID a rolu aktuálne prihláseného užívateľa
+        $userId = auth()->id();
+        $userRole = auth()->user()->role;
+
+        // Ak je používateľ admin, načítajte všetky predmety
+        // Inak načítajte len predmety, pre ktoré je prihlásený užívateľ garant
+        $subjects = $userRole === 'admin' ? Subject::all() : Subject::where('guarantor_id', $userId)->get();
+
 
         // Získanie dostupných učiteľov, okrem aktuálne prihláseného užívateľa
         $availableTeachers = User::where('role', 'teacher')
             ->orWhere('role', 'guarantor')
-            ->where('id', '!=', $guarantorId) // Vylúčiť aktuálneho užívateľa
+            ->where('id', '!=', $userId) // Vylúčiť aktuálneho užívateľa
             ->get();
 
         // Získanie priradených učiteľov pre každý predmet
