@@ -65,7 +65,7 @@ class ManageSchedulesController extends Controller
             $instructor_id = $activity->teacher->id;
         }
 
-        $teacher_ids = json_decode($activity->subject->teacher_ids, true);
+        $teacher_ids = $activity->subject->teacher_ids;
         if(!in_array($instructor_id, $teacher_ids))
         {
             return redirect()->back()->with('failure', 'Chyba: zvolený předmět neobsahuje zvoleného vyučujícího');
