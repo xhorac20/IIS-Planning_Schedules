@@ -58,7 +58,14 @@
                                 <li>{{ $subject['code'] }}</li>
                                 <li>{{ $subject['name'] }}</li>
                                 <li>{{ $subject['credits'] }}</li>
-                                <li>{{ $users->find($subject['guarantor_id'])->name }}</li>
+                                {{-- Skontrolujte, či existuje garant, a vypíšte jeho meno --}}
+                                <li>
+                                    @if ($user = $users->find($subject['guarantor_id']))
+                                        {{ $user->name }}
+                                    @else
+                                        Nenastavený
+                                    @endif
+                                </li>
                                 <li style="display: flex; flex-direction: row">
                                     <a href="{{ route('subjects.edit', $subject->id) }}">Edit</a>
                                     <form class="delete-all" action="{{ route('subjects.destroy', $subject->id) }}"

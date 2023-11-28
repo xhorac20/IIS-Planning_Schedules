@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -20,7 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('guarantor_id')->nullable(); // ID garanta předmětu
             $table->json('teacher_ids')->nullable();   // Zoznam ID ucitelov predmetu
 
-            $table->foreign('guarantor_id')->references('id')->on('users');
+            // Teraz pridajte cudzí kľúč s nastavením ON DELETE SET NULL
+            $table->foreign('guarantor_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }
