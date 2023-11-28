@@ -45,46 +45,42 @@ class ManageSchedulesController extends Controller
 
         // kontrola kolize místností
         $roomEmpty = Schedules::where('room_id', $request->input('room_id'))
-                        ->where('day', $request->input('day'))
-                        ->where(function ($query) use ($start_time, $end_time){
-                            $query->whereBetween('start_time', [$start_time, $end_time])
-                                ->orWhereBetween('end_time', [$start_time, $end_time]);
-                        })->doesntExist();
-        if(!$roomEmpty)
-        {
+            ->where('day', $request->input('day'))
+            ->where(function ($query) use ($start_time, $end_time) {
+                $query->whereBetween('start_time', [$start_time, $end_time])
+                    ->orWhereBetween('end_time', [$start_time, $end_time]);
+            })->doesntExist();
+        if (!$roomEmpty) {
             return redirect()->back()->with('failure', 'Chyba: zvolená místnost v tento čas není volná');
         }
 
         $activity = EducationalActivities::where('id', $request->input('educational_activity_id'))->first();
-        if(isNull($activity->teacher))
-        {
+        if (isNull($activity->teacher)) {
             $instructor_id = $request->input('instructor_id');
-        }
-        else
-        {
+        } else {
             $instructor_id = $activity->teacher->id;
         }
 
         $teacher_ids = $activity->subject->teacher_ids;
-        if(!in_array($instructor_id, $teacher_ids))
-        {
+        // Skontrolujte, či je teacher_ids pole
+        if (is_array($teacher_ids)) {
+            if (!in_array($instructor_id, $teacher_ids)) {
+                return redirect()->back()->with('failure', 'Chyba: zvolený předmět neobsahuje zvoleného vyučujícího');
+            }
+        } else {
+            // teacher_ids nie je pole alebo je null, vráťte chybovú správu
             return redirect()->back()->with('failure', 'Chyba: zvolený předmět neobsahuje zvoleného vyučujícího');
         }
 
         // kontrola požadavků na rozvrh
         $dayReq = ScheduleRequirement::where('instructor_id', $instructor_id)->where('day', $day)->first();
-        if($dayReq)
-        {
-            if($start_time < $dayReq->start_time || $end_time > $dayReq->end_time)
-            {
+        if ($dayReq) {
+            if ($start_time < $dayReq->start_time || $end_time > $dayReq->end_time) {
                 return redirect()->back()->with('failure', 'Chyba: zvolený vyučující v tento čas není volný');
             }
-        }
-        else
-        {
+        } else {
             return redirect()->back()->with('failure', 'Chyba: zvolený vyučující v tento den není volný');
         }
-
 
 
         Schedules::updateOrCreate(
@@ -106,10 +102,9 @@ class ManageSchedulesController extends Controller
     public function remove(Request $request)
     {
         $ids = $request->input('schedules_id', []);
-        foreach ($ids as $id)
-        {
+        foreach ($ids as $id) {
             $schedule = Schedules::where('id', $id);
-            if($schedule){
+            if ($schedule) {
                 $schedule->delete();
             }
         }
