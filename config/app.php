@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'PlanningSchedules'),
 
     /*
     |--------------------------------------------------------------------------
@@ -182,6 +182,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Redis' => Illuminate\Support\Facades\Redis::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
