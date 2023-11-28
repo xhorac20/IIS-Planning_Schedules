@@ -81,7 +81,7 @@
             @endif
 
             <!-- Vyučujúci -->
-            @if(Auth::user()->isTeacher())
+            @if(Auth::user()->isTeacher() || Auth::user()->isAdmin() || Auth::user()->isGuarantor())
                 <li><a href="{{ route('teacher.schedule-requirements') }}">Požadavky na rozvrh</a></li>
                 <!-- Další odkazy pro vyučujícího -->
             @endif

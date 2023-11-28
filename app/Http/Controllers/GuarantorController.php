@@ -23,7 +23,6 @@ class GuarantorController extends Controller
 
         // Získanie dostupných učiteľov, okrem aktuálne prihláseného užívateľa
         $availableTeachers = User::where('role', 'teacher')
-            ->orWhere('role', 'scheduler')
             ->orWhere('role', 'guarantor')
             ->where('id', '!=', $guarantorId) // Vylúčiť aktuálneho užívateľa
             ->get();
