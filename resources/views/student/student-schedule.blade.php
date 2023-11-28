@@ -41,7 +41,7 @@
                                                     //'special' => !in_array($activity['type'], ['Cvičenie', 'Prednáška'])
                                                      'ine' => $activity['type'] == 'Iné',])>
                                                 <div>{{ $activity['subject'] }} ({{ $activity['type'] }})</div>
-                                                <div>{{ $activity['room'] }} {{ $activity['duration1'] }}</div>
+                                                <div>{{ $activity['room'] }} {{ $activity['duration'] }}</div>
 
                                                 <div>{{ $activity['repetition'] }}</div>
                                                 @if ($activity['event_date'])
