@@ -34,11 +34,17 @@ class EducationalActivitiesController extends Controller
      */
     public function create()
     {
-        /// Získajte ID aktuálne prihláseného garanta
-        $guarantorId = auth()->id();
+        // Získajte ID a rolu aktuálne prihláseného užívateľa
+        $userId = auth()->id();
+        $userRole = auth()->user()->role;
 
-        // Načítajte predmety, pre ktoré je prihlásený užívateľ garant
-        $subjects = Subject::where('guarantor_id', $guarantorId)->get();
+        // Ak je používateľ admin, načítajte všetky predmety
+        // Inak načíta len predmety, pre ktoré je prihlásený užívateľ garant
+        if ($userRole === 'admin') {
+            $subjects = Subject::all();
+        } else {
+            $subjects = Subject::where('guarantor_id', $userId)->get();
+        }
 
         // Pošlite predmety do šablóny
         return view('educational_activities.create', compact('subjects'));
