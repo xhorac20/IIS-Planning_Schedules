@@ -47,17 +47,19 @@
                     <input type="number" name="credits" id="credits" value="{{ $subject['credits'] }}" required>
                 </div>
                 <div class="borders borders-role">
-                    <label for="guarantor_id"> Subject guarantor:
+                    <label for="guarantor_id">Subject guarantor:
                         <select name="guarantor_id" id="guarantor_id" required>
                             @foreach($users as $user)
                                 @if($user->role === 'guarantor')
-                                    <option value="{{ $user->id }}
-                                {{ $subject['guarantor_id'] == $user->id ? 'selected' : '' }}>">{{ $user['name'] }}</option>
+                                    <option value="{{ $user->id }}" {{ $subject['guarantor_id'] == $user->id ? 'selected' : '' }}>
+                                        {{ $user->name }}
+                                    </option>
                                 @endif
                             @endforeach
                         </select>
                     </label>
                 </div>
+
 
                 <div class="buttons">
                     <button type="submit">Save</button>
