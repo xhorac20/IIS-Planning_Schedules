@@ -55,5 +55,4 @@ class StudentSchedule extends Model
             ->exists();
     }
 
-    // Môžete pridať ďalšie metódy alebo vlastnosti podľa potreby
 }

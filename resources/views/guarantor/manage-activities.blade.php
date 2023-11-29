@@ -17,7 +17,8 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <a href="{{ route('educational-activities.create') }}" class="create-button create-activity-button btn-success btn-dark-blue">Pridať novú aktivitu</a>
+                <a href="{{ route('educational-activities.create') }}"
+                   class="create-button create-activity-button btn-success btn-dark-blue">Pridať novú aktivitu</a>
             </div>
 
             @foreach ($subjects as $subject)
@@ -37,7 +38,7 @@
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Odstrániť {{ $teacher->name }}</button>
+                                    <button type="submit" class="btn-dark">Odstrániť {{ $teacher->name }}</button>
                                 </form>
                             @endforeach
                         </ul>

@@ -126,6 +126,25 @@ footer {
     cursor: pointer;
 }
 
+.btn-dark {
+    background-color: darkgray;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.btn-dark:hover {
+    background-color: #003d82;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
 .text-center {
     color: #007bff;
     text-align: center;
@@ -166,9 +185,11 @@ footer {
     border-top: none;
     padding: 0;
 }
+
 .sidebar ul {
     background-color: #262626;
 }
+
 .sidebar span {
     color: #262626; /* Oranžová barva textu */
     display: block; /* Změní span na blokový element, aby bylo možné ho vycentrovat */
@@ -178,33 +199,39 @@ footer {
     font-size: 20px;
     background-color: white;
 }
+
 .sidebar li .administer {
     color: white;
     background-color: #6c6c6c;
     text-decoration: none;
     padding-left: 25px;
 }
+
 .sidebar li .administration {
     background-color: rgba(128, 12, 2, 0.85);
     text-decoration: none;
     color: white;
 }
+
 .sidebar li .administration:hover {
     background-color: rgba(128, 12, 2, 0.85);
     color: white;
     transition: all 0.5s;
 }
+
 .sidebar a {
     display: block;
     color: #c9c9c9;
     padding: 15px 15px;
 }
+
 .sidebar a:hover {
     background-color: #d3d3d3;
     color: #262626;
     text-decoration: none;
 
 }
+
 .account {
     background-color: white;
     padding: 15px 15px;
@@ -222,19 +249,23 @@ footer {
     padding: 10px 50px 10px 50px;
     flex-grow: 4;
 }
+
 .event-title {
     background-color: rgba(128, 12, 2, 0.85);
     padding: 10px;
 }
+
 .event-title h1 {
     color: white;
     margin: 0 10px;
 }
+
 .user-container form {
     display: flex;
     flex-direction: column;
     margin-top: 15px;
 }
+
 .user-container input {
     max-width: 270px;
     border: 1px solid #007bff;
@@ -246,9 +277,11 @@ footer {
     font-size: 16px;
     margin: 10px 10px;
 }
+
 .user-container input::placeholder {
     color: rgba(73, 89, 217, 0.72);
 }
+
 .user-container select {
     max-width: 300px;
     border: 1px solid #007bff;
@@ -261,12 +294,14 @@ footer {
     margin: 10px 10px;
     color: rgba(73, 89, 217, 0.72);
 }
+
 .user-container select option {
     color: rgba(73, 89, 217, 0.72);
     padding: 10px 15px;
     height: 20px;
     margin-top: 5px;
 }
+
 .user-container button {
     max-width: 300px;
     background-color: #0056b3;
@@ -281,7 +316,8 @@ footer {
     font-size: 16px;
     margin: 10px 10px;
 }
-.user-container button:nth-of-type(2){
+
+.user-container button:nth-of-type(2) {
     max-width: 300px;
     background-color: #8d0000;
     color: white;
@@ -304,10 +340,12 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
 .event-title-manage h1 {
     flex-grow: 8;
     vertical-align: middle;
 }
+
 .alert {
     color: white;
     background-color: rgba(62, 59, 59, 0.76);
@@ -315,11 +353,13 @@ footer {
     border-radius: 5px;
     padding: 5px 10px;
 }
+
 .alert-center {
     position: absolute;
     right: 40px;
     top: 80px;
 }
+
 .create-button {
     width: 90px;
     background-color: #007bff;
@@ -327,16 +367,19 @@ footer {
     margin: 0;
     transition: all 0.5s;
 }
-.create-button:hover{
+
+.create-button:hover {
     background-color: #edf5ff;
     color: #0056b3;
     font-weight: 600;
     transition: all 0.3s;
 }
-.manage-content ul{
+
+.manage-content ul {
     list-style-type: none;
     padding: 0;
 }
+
 .head {
     background-color: rgba(159, 41, 6, 0.85);
     cursor: auto;
@@ -344,9 +387,11 @@ footer {
     border-top-left-radius: 10px;
     font-weight: 600;
 }
+
 .head form {
     margin: 0 0 0 10px;
 }
+
 .head form input {
     width: 50%;
     margin: auto;
@@ -357,23 +402,28 @@ footer {
     border: 1px solid white;
     transition: all 0.5s;
 }
+
 .head form input:hover {
     background-color: rgba(62, 59, 59, 0.76);
 }
-.head form input:focus{
+
+.head form input:focus {
     color: rgb(255, 230, 224);
     background-color: white;
     transition: all 0.5s;
     width: 100%;
 }
+
 .head form input::placeholder:focus {
     color: rgba(214, 96, 60, 0.96);
 }
+
 .head form input::placeholder {
     color: white;
     text-align: center;
 }
-.head-menu  {
+
+.head-menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -381,34 +431,42 @@ footer {
     display: flex;
     flex-direction: row;
 }
+
 .head-menu li {
     display: block;
     padding: 10px;
     color: white;
 }
-.head-menu li:nth-of-type(1){
+
+.head-menu li:nth-of-type(1) {
     width: 18%;
 }
-.head-menu li:nth-of-type(2){
+
+.head-menu li:nth-of-type(2) {
     width: 35%;
 }
-.head-menu li:nth-of-type(3){
+
+.head-menu li:nth-of-type(3) {
     width: 10%;
 }
-.head-menu li:nth-of-type(4){
+
+.head-menu li:nth-of-type(4) {
     max-width: 100px;
     margin-left: 100px;
     padding: 6px 10px;
 }
+
 .items {
     cursor: pointer;
     background-color: rgba(214, 96, 60, 0.96);
     text-align: left;
 }
+
 .items:hover {
     background-color: rgba(139, 32, 0, 0.92);
     transition: all 0.5s;
 }
+
 .items a {
     display: block;
     color: white;
@@ -419,9 +477,11 @@ footer {
     border: 1px solid white;
     background-color: unset;
 }
+
 .items a:nth-of-type(2n) {
     background-color: #0000d4;
 }
+
 .items ul li a:nth-of-type(2) {
     background-color: #0000d4;
 }
@@ -432,14 +492,17 @@ footer {
     color: rgba(123, 28, 0, 0.92);
     transition: all 0.3s;
 }
+
 .items a:nth-of-type(2):hover {
     background-color: #8d0000;
     color: white;
 }
+
 .splitter {
     margin: 4px 0;
     border: 1px solid rgba(139, 32, 0, 0.92);
 }
+
 .end-table {
     border: 15px solid rgba(159, 41, 6, 0.85);
     border-bottom-left-radius: 10px;
@@ -462,41 +525,50 @@ footer {
     margin-bottom: 15px;
     font-weight: 600;
 }
+
 .borders-role {
     display: block;
 }
+
 .borders input {
     margin: 5px 5px 5px 15px;
     width: calc(100% - 30px);
     color: rgba(73, 89, 217, 0.72);
 }
-.borders label{
+
+.borders label {
     vertical-align: middle;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .borders select {
     margin: 5px 5px 5px 15px;
     width: calc(100% - 30px);
     justify-content: space-between;
 }
+
 .borders input[type="email"] {
     width: calc(100% - 30px);
 }
+
 .buttons {
     display: flex;
     flex-direction: row;
 }
+
 .delete-button {
     background-color: #8d0000;
     border: 2px solid #580000;
 }
+
 .buttons button:nth-of-type(n) {
     width: 50%;
     margin-left: 0;
     max-width: 192px;
 }
+
 .change-password {
     display: flex;
     flex-direction: column;
@@ -504,13 +576,16 @@ footer {
     padding: 0 5px;
     max-width: 385px;
 }
+
 .change-password label {
     margin-top: 10px;
 }
+
 .change-password input {
     margin: 5px;
     max-width: 100%;
 }
+
 .change-password hr {
     width: 100%;
 }
@@ -526,6 +601,7 @@ footer {
     text-align: center;
     position: relative;
 }
+
 .card h2 {
     background-color: #e6f0ff;
     color: #007bff;
@@ -534,9 +610,11 @@ footer {
     padding: 15px;
     border: 1px solid #0000d4;
 }
+
 .card hr {
     width: 100%;
 }
+
 .profile-role {
     position: absolute;
     background-color: rgba(128, 12, 2, 0.85);
@@ -551,18 +629,22 @@ footer {
     margin: 0;
     text-transform: uppercase;
 }
+
 /**************************************** ROOMS MANAGEMENT **********************/
 .create-room-button {
     width: 120px;
 }
+
 .create-room-button:hover {
     width: 120px;
     transition: all 0.3s;
 }
+
 .event-title-manage form {
     margin-top: 10px;
 
 }
+
 .delete-button {
     background-color: unset;
     border: none !important;
@@ -570,15 +652,18 @@ footer {
     margin-right: 30px !important;
     width: 120px !important;
 }
+
 .delete-button:hover {
     background-color: unset !important;
 }
-.delete-button button{
+
+.delete-button button {
     background-color: #8d0000;
     border: 2px solid #580000 !important;
     width: 120px;
     padding: 15px 25px !important;
 }
+
 .delete-all {
     background-color: unset;
     border: none !important;
@@ -586,10 +671,12 @@ footer {
     /*    margin-right: 30px !important;*/
     /*    width: 120px !important;*/
 }
+
 .delete-all:hover {
     background-color: unset !important;
 }
-.delete-all button{
+
+.delete-all button {
     background-color: #8d0000;
     border: 2px solid #580000 !important;
     /*    width: 120px;*/
@@ -597,6 +684,7 @@ footer {
     border-radius: 10px;
     margin: 0 0 0 10px;
 }
+
 .head-menu li:last-of-type {
     padding: 6px 10px;
 }
@@ -605,37 +693,45 @@ footer {
 .create-sub-button {
     width: 100px;
 }
+
 .create-sub-button:hover {
     width: 100px;
     transition: all 0.3s;
 }
+
 .move-edit li:nth-of-type(5) {
     position: relative !important;
     left: 100px !important;
 }
+
 /* code */
-.head-menu-sub li:nth-of-type(1){
+.head-menu-sub li:nth-of-type(1) {
     width: 50px;
 }
+
 /* name */
-.head-menu-sub li:nth-of-type(2){
+.head-menu-sub li:nth-of-type(2) {
     width: 280px;
 }
+
 /* credits */
-.head-menu-sub li:nth-of-type(3){
+.head-menu-sub li:nth-of-type(3) {
     width: 55px;
     text-align: center;
 }
+
 /* guarantor */
-.head-menu-sub li:nth-of-type(4){
+.head-menu-sub li:nth-of-type(4) {
     width: 180px;
     max-width: none;
     margin-left: 0;
     padding: 10px;
 }
+
 .head-menu-sub form {
     margin: 3px 0;
 }
+
 /********************************* SUBJECT DETAIL ***************************/
 .subject-info {
     display: flex;
@@ -643,16 +739,20 @@ footer {
     padding: 15px;
     text-align: left;
 }
+
 .subject-info-name {
     padding: 0 15px;
     font-weight: 600;
 }
+
 .subject-info-value {
     padding: 0 10px;
 }
+
 .show-annot {
     font-weight: 600;
 }
+
 .show-annot-value {
     color: #3e3e3e;
     max-width: 100%;
@@ -666,29 +766,36 @@ footer {
 .create-activity-button {
     width: 155px;
 }
+
 .create-activity-button:hover {
     width: 155px;
 }
+
 .card-header {
     background-color: white;
     color: #3b3b3b;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
+
 .active-card {
     width: 100%;
     min-width: 1000px;
 }
+
 .card-body h4 {
     margin-bottom: 5px;
 }
+
 .card-body form {
     padding: 10px;
 }
+
 .card-body ul button {
     padding: 10px;
     margin-right: 10px;
 }
+
 .vyuka li {
     margin: 10px 0;
     text-align: left;
@@ -707,52 +814,63 @@ footer {
     align-items: center;
     cursor: pointer;
 }
+
 .activities a {
     padding: 10px;
     color: white;
     display: block;
     width: 35%;
 }
+
 .activities a:hover {
     text-decoration: none;
 }
+
 .activities p {
     width: 50%;
     margin: 0;
     padding: 10px;
     color: white;
 }
+
 .dots {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
+
 .activities form {
     margin-top: 0;
 }
+
 .activities button {
     margin: 5px;
     padding: 10px 15px !important;
     width: 150px;
 }
+
 .activities:hover {
     background-color: #9f2906d9;
     transition: all 0.5s;
 }
+
 .btn-send {
     background-color: #0056b3 !important;
     border: 1px solid #0056b3 !important;
 }
+
 .btn-send:hover {
     color: #007bff;
     background-color: white !important;
     border: 1px solid #0056b3 !important;
     transition: all 0.5s;
 }
+
 .btn-remove {
     background-color: #8d0000 !important;
     border: 1px solid #580000 !important;
 }
+
 .btn-remove:hover {
     color: white !important;
     background-color: #2f2f2f !important;
@@ -765,31 +883,38 @@ ul {
     padding: 0;
     list-style-type: none;
 }
+
 ul li a {
     color: #007bff;
     text-decoration: none;
 }
+
 ul li a:hover {
     text-decoration: underline;
     cursor: pointer;
 }
+
 .schedule-container {
     flex-grow: 1;
     padding: 20px;
     background-color: #f8f9fa;
 }
+
 .schedule-container h2 {
     color: #0056b3;
     margin-bottom: 20px;
 }
+
 .schedule-table {
     width: 100%;
     margin-bottom: 5px;
 }
+
 .schedule-table thead th {
-    background-color: rgba(159,41,6,.85);
+    background-color: rgba(159, 41, 6, .85);
     color: white;
 }
+
 .schedule-table td {
     text-align: center;
     padding: 5px;
@@ -797,7 +922,8 @@ ul li a:hover {
     /*min-width: 120px;*/
     /*max-width: 120px;*/
 }
-.activity{
+
+.activity {
     background-color: #147c00;
     border: 2px solid #074b00;
     color: white;
@@ -810,48 +936,57 @@ ul li a:hover {
     z-index: 2;
     /*left: 50%;*/
 }
+
 .minute-move {
     background-color: #1a202c;
     left: 0;
 }
+
 .minute-15 {
     left: 25%;
 }
+
 .minute-30 {
     left: 50%;
 }
+
 .minute-45 {
     left: 75%;
 }
+
 .cvicenie {
     background-color: #007bff;
     border: 2px solid #007bff;
     color: white;
     box-shadow: inset 0 0 5px white;
 }
+
 .skuska {
     background-color: #ad0000;
     border: 2px solid #7a0000;
     color: white;
     box-shadow: inset 0 0 5px white;
 }
+
 .ine {
     background-color: #dabc00;
     border: 2px solid #c98c00;
     color: white;
     box-shadow: inset 0 0 5px white;
 }
+
 .schedule-slot {
-background-color: #e3f2fd;
+    background-color: #e3f2fd;
 }
+
 .scroll {
-width: auto;
-overflow-x: auto;
-overflow-y: hidden;
-white-space: nowrap;
-border-radius: 10px;
-border: 2px solid #8d0000;
-margin-top: 15px;
+    width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    border-radius: 10px;
+    border: 2px solid #8d0000;
+    margin-top: 15px;
 }
 
 /********************************** SCROLLBAR + SELECTION **************************/
@@ -859,21 +994,25 @@ margin-top: 15px;
 ::-webkit-scrollbar {
     width: 15px;
 }
+
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
 }
+
 /*Handle*/
 ::-webkit-scrollbar-thumb {
     background: #606060;
     border-radius: 10px;
     box-shadow: inset 0 0 5px black;
 }
+
 /*Handle on hover*/
 ::-webkit-scrollbar-thumb:hover {
     background: #2f2f2f;
     box-shadow: inset 0 0 5px #858585;
 }
+
 /*Zmena farby ked oznacujes text*/
 ::selection {
     color: white;
