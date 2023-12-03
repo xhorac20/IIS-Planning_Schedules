@@ -41,7 +41,13 @@
                     <div class="subject-info-value">
                         <p>{{ $subject['code'] }}</p>
                         <p>{{ $subject['credits'] }}</p>
-                        <p>{{ $subject['guarantor_id'] }}</p>
+                        <p>
+                            @if ($user = \App\Models\Subject::findName($subject['guarantor_id']))
+                                {{ $user->name }}
+                            @else
+                                Nenastavený
+                            @endif
+                        </p>
                     </div>
                 </div>
                 {{--Další detaily uživatele --}}

@@ -108,6 +108,12 @@ class Subject extends Model
     {
         return self::where('id', $id)->first();
     }
+    public static function findName($id): \Illuminate\Database\Eloquent\Builder|Model
+    {
+        $users = User::all();
+
+        return $users->where('id', $id)->first();
+    }
 
     public static function where(string $column, $operator = null, $value = null): \Illuminate\Database\Eloquent\Builder
     {
